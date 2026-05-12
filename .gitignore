@@ -23,3 +23,8 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+
+# AI agent tool configs (skills installed in .agents/ — all others are symlinks)
+.*/
+!.agents/
+!.git/

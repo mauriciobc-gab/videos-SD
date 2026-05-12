@@ -8,6 +8,8 @@ Multi-project workspace for **Soluções Digitais** (DTI / Grupo Águia Branca) 
 |---|---|---|
 | `RPA-video/` | RPA results 2025/2026 — ~2:44 runtime | cena-01 → cena-07 |
 | `ANALISE_CRITICA_MOTORISTA-video/` | Análise Crítica Motorista — 9 scenes | cena-01 → cena-09 |
+| `ANALISE_CRITICA_IMPLANTACAO/` | Análise Crítica Implantação — 9 scenes | cena-01 → cena-09 |
+| `ANALISE_CRITICA_RESULTADOS/` | Análise Crítica Resultados — 2 scenes | cena-intro, cena-outro |
 
 Each project has its own `AGENTS.md` (HyperFrames rules) and `CLAUDE.md` (composition rules). **Read both before editing any composition.**
 
@@ -15,13 +17,15 @@ Each project has its own `AGENTS.md` (HyperFrames rules) and `CLAUDE.md` (compos
 
 Skills are in `skills/` and `.agents/skills/`. Always invoke the relevant skill before writing or modifying HTML compositions — they encode non-obvious framework patterns that generic web docs won't cover.
 
-| Skill | Trigger |
-|---|---|
-| `/hyperframes` | Creating/editing compositions, captions, audio-reactive visuals, transitions |
-| `/hyperframes-cli` | lint, preview, render, transcribe, tts CLI commands |
-| `/hyperframes-registry` | `hyperframes add` — install blocks/components |
-| `/gsap` | GSAP animations in compositions |
-| `/website-to-hyperframes` | Capture a URL → video |
+| Skill | Trigger | Source |
+|---|---|---|---|
+| `/hyperframes` | Creating/editing compositions, captions, audio-reactive visuals, transitions | `heygen-com/hyperframes` |
+| `/hyperframes-cli` | lint, preview, render, transcribe, tts CLI commands | `heygen-com/hyperframes` |
+| `/hyperframes-registry` | `hyperframes add` — install blocks/components | `heygen-com/hyperframes` |
+| `/gsap` | GSAP animations in compositions | `heygen-com/hyperframes` |
+| `/website-to-hyperframes` | Capture a URL → video | `heygen-com/hyperframes` |
+| `/remotion-to-hyperframes` | Port Remotion (React) code to HyperFrames | `heygen-com/hyperframes` |
+| `/text-to-speech` | ElevenLabs TTS voiceover generation | `elevenlabs/skills` |
 
 ## Commands
 
@@ -61,12 +65,26 @@ assets/                        # Shared — source of truth
   brand/                       # SVG logos and brand assets
   DESIGN.MD                    # Brand design system — read for colors/typography
   rpa-video/                   # VO scripts + generated MP3s for RPA-video
-  analise-critica-motorista/   # VO scripts + generated MP3s for ANALISE project
+  analise-critica-motorista/   # VO scripts + generated MP3s for Análise Crítica Motorista
+  analise-critica-implantacao/ # VO scripts + generated MP3s + media for Análise Crítica Implantação
 
 <ProjectDir>/assets/           # Deployed assets used at render time (copy from above)
 ```
 
 **Never edit files in `<ProjectDir>/assets/` directly** — they are copies. Edit the source in the top-level `assets/<project>/` subfolder and re-copy.
+
+## Installed Skills
+
+Skills are installed in `.agents/skills/` (canonical source). Other `.xxx/` AI agent config directories are symlinks and ignored by git. Run `hyperframes add <skill>` to install new ones.
+
+Installed skills (from `skills-lock.json`):
+- `gsap` — from `heygen-com/hyperframes`
+- `hyperframes` — from `heygen-com/hyperframes`
+- `hyperframes-cli` — from `heygen-com/hyperframes`
+- `hyperframes-registry` — from `heygen-com/hyperframes`
+- `remotion-to-hyperframes` — from `heygen-com/hyperframes`
+- `text-to-speech` — from `elevenlabs/skills`
+- `website-to-hyperframes` — from `heygen-com/hyperframes`
 
 ## Brand Design System
 
