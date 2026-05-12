@@ -15,6 +15,10 @@ renders/
 # Generated audio
 *.wav
 *.mp3
+!RPA-video/assets/*.mp3
+!ANALISE_CRITICA_IMPLANTACAO/assets/*.mp3
+!ANALISE_CRITICA_MOTORISTA-video/assets/*.mp3
+!ANALISE_CRITICA_RESULTADOS/assets/*.mp3
 
 # Logs
 logs
