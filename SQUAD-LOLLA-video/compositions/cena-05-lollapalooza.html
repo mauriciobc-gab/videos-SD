@@ -1,0 +1,221 @@
+<template id="cena-05-template">
+  <div id="cena-05" data-composition-id="cena-05" data-start="0" data-width="1920" data-height="1080">
+    <style>
+      #cena-05 {
+        width: 1920px; height: 1080px; overflow: hidden;
+        background: #1e3460;
+        font-family: "Satoshi Variable", sans-serif;
+        color: #fdfbf4;
+        position: relative;
+      }
+      .scene-content {
+        width: 100%; height: 100%;
+        padding: 60px 100px;
+        box-sizing: border-box;
+        display: flex; flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        background: rgba(30, 52, 96, 0.4);
+      }
+      .lolla-header {
+        display: flex; align-items: center;
+        justify-content: center; gap: 24px;
+        margin-bottom: 8px;
+      }
+      .lolla-logo { width: 280px; height: auto; filter: brightness(0) invert(1); }
+      .badge-oficial {
+        font-size: 18px; font-weight: 700;
+        font-family: "Cabin", sans-serif;
+        letter-spacing: 0.15em; text-transform: uppercase;
+        padding: 8px 20px;
+        border: 2px solid #86e5ff;
+        border-radius: 30px;
+        color: #86e5ff;
+        background: rgba(14, 106, 192, 0.15);
+      }
+      .section-year {
+        font-size: 24px; font-weight: 700;
+        letter-spacing: 0.1em; text-transform: uppercase;
+        color: rgba(253, 251, 244, 0.8);
+      }
+      .metrics-row {
+        display: flex; justify-content: center; gap: 32px;
+        width: 100%;
+      }
+      .metric-card {
+        width: 280px;
+        background: rgba(14, 106, 192, 0.12);
+        border: 1px solid rgba(14, 106, 192, 0.35);
+        border-radius: 20px;
+        padding: 28px 24px;
+        display: flex; flex-direction: column;
+        align-items: center; gap: 8px;
+      }
+      .metric-value {
+        font-size: 56px; font-weight: 900;
+        line-height: 1;
+        font-variant-numeric: tabular-nums;
+      }
+      .metric-label {
+        font-size: 18px; font-weight: 400;
+        color: rgba(253, 251, 244, 0.8);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        text-align: center;
+      }
+      .days-row {
+        display: flex; justify-content: center; gap: 24px;
+        width: 100%;
+      }
+      .day-card {
+        width: 220px; padding: 20px;
+        border-radius: 16px;
+        background: rgba(14, 106, 192, 0.08);
+        border: 1px solid rgba(14, 106, 192, 0.2);
+        display: flex; flex-direction: column;
+        align-items: center; gap: 6px;
+      }
+      .day-label {
+        font-size: 16px; font-weight: 700;
+        font-family: "Cabin", sans-serif;
+        letter-spacing: 0.1em; text-transform: uppercase;
+        color: rgba(253, 251, 244, 0.7);
+      }
+      .day-value { font-size: 36px; font-weight: 900; font-variant-numeric: tabular-nums; }
+      .day-bar { width: 100%; height: 6px; background: rgba(14, 106, 192, 0.15); border-radius: 3px; overflow: hidden; }
+      .day-bar-fill { height: 100%; background: #0e6ac0; border-radius: 3px; width: 0; }
+      .highlight-card {
+        width: 400px; padding: 24px 32px;
+        border-radius: 20px;
+        border: 2px solid rgba(134, 229, 255, 0.6);
+        background: rgba(14, 106, 192, 0.2);
+        display: flex; flex-direction: column;
+        align-items: center; gap: 4px;
+      }
+      .highlight-value {
+        font-size: 72px; font-weight: 900;
+        color: #86e5ff;
+        font-variant-numeric: tabular-nums;
+        text-shadow: 0 0 40px rgba(134, 229, 255, 0.4);
+      }
+      .highlight-label {
+        font-size: 18px; font-weight: 400;
+        color: rgba(253, 251, 244, 0.85);
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .confetti-dot {
+        position: absolute;
+        width: 6px; height: 6px; border-radius: 50%;
+        pointer-events: none;
+      }
+    </style>
+
+    <div style="position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;pointer-events:none;">
+      <div class="confetti-dot" style="top:10%;left:5%;background:#86e5ff;opacity:0.6"></div>
+      <div class="confetti-dot" style="top:20%;left:15%;background:#0069b3;opacity:0.5"></div>
+      <div class="confetti-dot" style="top:15%;left:80%;background:#86e5ff;opacity:0.4"></div>
+      <div class="confetti-dot" style="top:30%;left:90%;background:#0e6ac0;opacity:0.6"></div>
+      <div class="confetti-dot" style="top:50%;left:5%;background:#86e5ff;opacity:0.5"></div>
+      <div class="confetti-dot" style="top:60%;left:95%;background:#0069b3;opacity:0.4"></div>
+      <div class="confetti-dot" style="top:75%;left:10%;background:#0e6ac0;opacity:0.5"></div>
+      <div class="confetti-dot" style="top:80%;left:75%;background:#86e5ff;opacity:0.6"></div>
+      <div class="confetti-dot" style="top:40%;left:50%;background:#0069b3;opacity:0.3"></div>
+      <div class="confetti-dot" style="top:70%;left:40%;background:#86e5ff;opacity:0.4"></div>
+    </div>
+
+    <div class="scene-content">
+      <div class="lolla-header" id="c5-header">
+        <img class="lolla-logo" src="assets/brand/lolla-bw.svg" alt="Lollapalooza" id="c5-logo"/>
+        <div class="badge-oficial" id="c5-badge">Transporte OFICIAL</div>
+      </div>
+      <div class="section-year" id="c5-year">2026</div>
+
+      <div class="metrics-row" id="c5-metrics">
+        <div class="metric-card" id="c5-m1">
+          <div class="metric-value" id="c5-m1-val">0</div>
+          <div class="metric-label">Passageiros totais</div>
+        </div>
+        <div class="metric-card" id="c5-m2">
+          <div class="metric-value" id="c5-m2-val">0</div>
+          <div class="metric-label">Pontos de embarque</div>
+        </div>
+      </div>
+
+      <div class="days-row" id="c5-days">
+        <div class="day-card" id="c5-d1">
+          <div class="day-label">20/03</div>
+          <div class="day-value" id="c5-d1-val">0</div>
+          <div class="day-bar"><div class="day-bar-fill" id="c5-d1-bar"></div></div>
+        </div>
+        <div class="day-card" id="c5-d2">
+          <div class="day-label">21/03</div>
+          <div class="day-value" id="c5-d2-val">0</div>
+          <div class="day-bar"><div class="day-bar-fill" id="c5-d2-bar"></div></div>
+        </div>
+        <div class="day-card" id="c5-d3">
+          <div class="day-label">22/03</div>
+          <div class="day-value" id="c5-d3-val">0</div>
+          <div class="day-bar"><div class="day-bar-fill" id="c5-d3-bar"></div></div>
+        </div>
+      </div>
+
+      <div class="highlight-card" id="c5-highlight">
+        <div class="highlight-label">Pico simultâneo — 22/03 14h</div>
+        <div class="highlight-value" id="c5-hl-val">0</div>
+        <div class="highlight-label">passageiros</div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      var tl = gsap.timeline({ paused: true });
+
+      var p1 = { val: 0 }, p2 = { val: 0 }, p3 = { val: 0 }, p4 = { val: 0 }, p5 = { val: 0 }, p6 = { val: 0 };
+
+      tl.fromTo(".confetti-dot", { y: -60, opacity: 0 }, { y: 60, opacity: 0.6, duration: 2, ease: "sine.inOut", stagger: 0.12 }, 0);
+
+      tl.fromTo("#c5-logo", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.6)" }, 0.3);
+      tl.fromTo("#c5-badge", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.6, ease: "power3.out" }, 0.8);
+      tl.fromTo("#c5-year", { opacity: 0, y: -10 }, { opacity: 0.8, y: 0, duration: 0.5, ease: "power2.out" }, 1.3);
+
+      tl.fromTo("#c5-m1", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 1.8);
+      tl.to(p1, { val: 10182, duration: 2.5, ease: "power2.out", onUpdate: function() {
+        document.getElementById("c5-m1-val").textContent = Math.floor(p1.val).toLocaleString("pt-BR");
+      }}, 1.8);
+
+      tl.fromTo("#c5-m2", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 2.4);
+      tl.to(p2, { val: 162, duration: 2.0, ease: "power2.out", onUpdate: function() {
+        document.getElementById("c5-m2-val").textContent = Math.floor(p2.val);
+      }}, 2.4);
+
+      tl.fromTo("#c5-d1", { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 4.0);
+      tl.to("#c5-d1-bar", { width: "100%", duration: 0.8, ease: "power2.out" }, 4.2);
+      tl.to(p3, { val: 2654, duration: 1.0, ease: "power2.out", onUpdate: function() {
+        document.getElementById("c5-d1-val").textContent = Math.floor(p3.val).toLocaleString("pt-BR");
+      }}, 4.2);
+
+      tl.fromTo("#c5-d2", { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 5.0);
+      tl.to("#c5-d2-bar", { width: "86%", duration: 0.8, ease: "power2.out" }, 5.2);
+      tl.to(p4, { val: 2287, duration: 1.0, ease: "power2.out", onUpdate: function() {
+        document.getElementById("c5-d2-val").textContent = Math.floor(p4.val).toLocaleString("pt-BR");
+      }}, 5.2);
+
+      tl.fromTo("#c5-d3", { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 6.0);
+      tl.to("#c5-d3-bar", { width: "80%", duration: 0.8, ease: "power2.out" }, 6.2);
+      tl.to(p5, { val: 2135, duration: 1.0, ease: "power2.out", onUpdate: function() {
+        document.getElementById("c5-d3-val").textContent = Math.floor(p5.val).toLocaleString("pt-BR");
+      }}, 6.2);
+
+      tl.fromTo("#c5-highlight", { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 1.0, ease: "back.out(1.6)" }, 7.5);
+      tl.to(p6, { val: 772, duration: 2.0, ease: "power2.out", onUpdate: function() {
+        document.getElementById("c5-hl-val").textContent = Math.floor(p6.val);
+      }}, 8.0);
+      tl.to("#c5-highlight", { boxShadow: "0 0 60px rgba(134, 229, 255, 0.3)", duration: 1.5, ease: "sine.inOut", yoyo: true, repeat: 2 }, 10.0);
+
+      window.__timelines["cena-05"] = tl;
+    </script>
+  </div>
+</template>

@@ -1,0 +1,132 @@
+<template id="cena-07-template">
+  <div id="cena-07" data-composition-id="cena-07" data-start="0" data-width="1920" data-height="1080">
+    <style>
+      #cena-07 {
+        width: 1920px; height: 1080px; overflow: hidden;
+        background: #1e3460;
+        font-family: "Satoshi Variable", sans-serif;
+        color: #fdfbf4;
+        position: relative;
+      }
+      .bg-photo {
+        position: absolute; top: 0; left: 0;
+        width: 100%; height: 100%;
+        object-fit: cover; opacity: 0.5;
+        pointer-events: none;
+      }
+      .gradient-overlay {
+        position: absolute; top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: linear-gradient(164deg, #1e3460 15.4%, #0069b3 86.5%);
+        mix-blend-mode: multiply;
+        pointer-events: none;
+      }
+      .vignette {
+        position: absolute; top: 0; left: 0;
+        width: 100%; height: 100%;
+        pointer-events: none;
+        box-shadow: inset 0 0 120px rgba(0,0,0,0.3);
+      }
+      .scene-content {
+        width: 100%; height: 100%;
+        padding: 80px 140px;
+        box-sizing: border-box;
+        display: flex; flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        background: rgba(30, 52, 96, 0.4);
+        position: relative; z-index: 2;
+      }
+      .phrase-line {
+        font-size: 72px; font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+        text-align: center;
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+        background: rgba(30, 52, 96, 0.85);
+        padding: 8px 24px;
+        border-radius: 8px;
+        display: inline-block;
+      }
+      .phrase-line.highlight {
+        color: #86e5ff;
+        text-shadow: 0 2px 16px rgba(134, 229, 255, 0.3);
+      }
+      .logo-end {
+        margin-top: 40px;
+        display: flex; flex-direction: column;
+        align-items: center; gap: 24px;
+        opacity: 0;
+      }
+      .logo-squad {
+        display: flex; align-items: center; gap: 12px;
+      }
+      .logo-squad svg { width: 100px; height: auto; }
+      .brand-line {
+        font-size: 48px; font-weight: 900;
+        letter-spacing: -0.02em;
+        background: rgba(30, 52, 96, 0.85);
+        padding: 8px 16px;
+        border-radius: 4px;
+        display: inline-block;
+      }
+      .sub-brand {
+        font-size: 24px; font-weight: 600;
+        letter-spacing: 0.1em;
+        color: rgba(253, 251, 244, 0.85);
+        font-style: italic;
+      }
+      .co-logos {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        margin-top: 12px;
+      }
+      .co-logo-dti { width: 140px; aspect-ratio: 186.7 / 80.1; }
+      .co-logo-aguia { width: 200px; aspect-ratio: 354.6 / 91.5; }
+      .logo-sd { width: 180px; aspect-ratio: 219 / 77; }
+    </style>
+
+    <img class="bg-photo" src="assets/brand/bg-tech-circuit.png" alt="" />
+    <div class="gradient-overlay"></div>
+    <div class="vignette"></div>
+
+    <div class="scene-content">
+      <div class="brand-line" id="c7-w1">SQUAD</div>
+      <div class="phrase-line" id="c7-w2">Experiência.</div>
+      <div class="phrase-line" id="c7-w3">Conveniência.</div>
+      <div class="phrase-line highlight" id="c7-w4">Eficiência operacional.</div>
+
+      <div class="logo-end" id="c7-logo">
+        <img class="logo-sd" src="assets/brand/logoSDwhite.svg" alt="Soluções Digitais" />
+        <div class="sub-brand" id="c7-sub">Um produto</div>
+        <div class="co-logos" id="c7-co">
+          <img class="co-logo-dti" src="assets/brand/logo-dti.svg" alt="DTI" />
+          <img class="co-logo-aguia" src="assets/brand/logo-aguia-branca.svg" alt="Grupo Águia Branca" />
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      var tl = gsap.timeline({ paused: true });
+
+      tl.fromTo("#c7-w1", { opacity: 0, y: 40, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "expo.out" }, 0.3);
+      tl.fromTo("#c7-w2", { opacity: 0, y: 30, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "power3.out" }, 1.0);
+      tl.fromTo("#c7-w3", { opacity: 0, y: 30, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "power3.out" }, 1.8);
+      tl.fromTo("#c7-w4", { opacity: 0, y: 30, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.9, ease: "back.out(1.4)" }, 2.6);
+
+      tl.to("#c7-w4", { textShadow: "0 0 60px rgba(134, 229, 255, 0.6)", duration: 1.5, ease: "sine.inOut", yoyo: true, repeat: 0 }, 3.5);
+
+      tl.fromTo("#c7-logo", { opacity: 0, y: 20, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 1.0, ease: "power2.out" }, 4.0);
+
+      // Final fade to dark (only on final scene)
+      tl.to(".scene-content", { opacity: 0.3, duration: 1.5, ease: "power2.in" }, 5.0);
+
+      window.__timelines["cena-07"] = tl;
+    </script>
+  </div>
+</template>

@@ -1,0 +1,1 @@
+A plataforma sustentou 267 requisições por minuto com tempo de resposta abaixo de 800 milissegundos — e ainda automatizou o lançamento de notas fiscais via RPA.
