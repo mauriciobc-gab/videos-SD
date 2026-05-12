@@ -1,0 +1,1 @@
+Alguns desafios não permitem margem de erro. Na condução de um veículo pesado, o estado de alerta e fadiga dos motoristas é fator crítico. Por isso, o time de Soluções Digitais desenvolveu uma plataforma digital para análise da capacidade crítica dos motoristas. Um ativo estratégico a serviço da segurança na operação da Viação Águia Branca.

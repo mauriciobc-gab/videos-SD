@@ -1,0 +1,184 @@
+<template id="cena-02-vo-hold-template">
+  <div id="cena-02-vo-hold-root" data-composition-id="cena-02-vo-hold" data-start="0" data-duration="7.5" data-width="1920" data-height="1080">
+    <style>
+      #cena-02-vo-hold-root {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        position: relative;
+        font-family: "Satoshi Variable", sans-serif;
+      }
+      #c2-vo-hold {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background: #1d325d;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateZ(0);
+      }
+      .c2-vo-hold__left {
+        position: absolute;
+        left: 208px;
+        top: 160px;
+        width: 1048px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 51px;
+        box-sizing: border-box;
+      }
+      .c2-vo-hold__title-block {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        width: 984px;
+      }
+      .c2-vo-hold__title {
+        margin: 0;
+        font-size: 96px;
+        font-weight: 700;
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        color: #ffffff;
+        width: 100%;
+      }
+      .c2-vo-hold__subtitle {
+        margin: 0;
+        margin-top: 12px;
+        font-size: 48px;
+        font-weight: 400;
+        line-height: 1.15;
+        color: #b6becf;
+        width: 100%;
+      }
+      .c2-vo-hold__lead {
+        margin: 0;
+        font-size: 32px;
+        font-weight: 300;
+        line-height: 1.35;
+        color: #86e5ff;
+        width: 989px;
+      }
+      .c2-vo-hold__section {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 18px;
+      }
+      .c2-vo-hold__section-title {
+        margin: 0;
+        font-size: 48px;
+        font-weight: 700;
+        line-height: 1.1;
+        color: #ffffff;
+        width: 100%;
+      }
+      .c2-vo-hold__formula {
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 50px;
+        padding: 23px 40px;
+        border-radius: 16px;
+        border: 1px solid rgba(12, 104, 190, 0.5);
+        background: rgba(24, 96, 168, 0.05);
+        font-size: 32px;
+        font-weight: 400;
+        letter-spacing: 0.96px;
+        color: #b6becf;
+        text-align: center;
+        white-space: nowrap;
+      }
+      .c2-vo-hold__impact-block {
+        display: flex;
+        flex-direction: column;
+        gap: 21px;
+        width: 615px;
+      }
+      .c2-vo-hold__impact-line {
+        margin: 0;
+        font-size: 36px;
+        font-weight: 400;
+        line-height: 1.2;
+        color: #86e5ff;
+        width: 100%;
+      }
+      .c2-vo-hold__photo {
+        position: absolute;
+        left: 1331px;
+        top: 0;
+        width: 589px;
+        height: 1080px;
+        overflow: hidden;
+      }
+      .c2-vo-hold__photo-inner {
+        position: absolute;
+        left: -706px;
+        top: 0;
+        width: 1620px;
+        height: 1080px;
+        background-color: #1d325d;
+        background-image: url("../assets/brand/figma-289-32.png");
+        background-size: cover;
+        background-position: center center;
+      }
+    </style>
+
+    <div id="c2-vo-hold" aria-hidden="true">
+      <div class="c2-vo-hold__left">
+        <div class="c2-vo-hold__title-block">
+          <h2 class="c2-vo-hold__title" id="c2-vo-title">Cost avoidance</h2>
+          <p class="c2-vo-hold__subtitle" id="c2-vo-sub">Escalabilidade além do quadro de funcionários</p>
+        </div>
+        <p class="c2-vo-hold__lead" id="c2-vo-lead">
+          Maximização da eficiência operacional ao absorver o crescimento do volume sem aumentar o quadro de funcionários.
+        </p>
+        <div class="c2-vo-hold__section">
+          <p class="c2-vo-hold__section-title" id="c2-vo-formula-h">A fórmula</p>
+          <div class="c2-vo-hold__formula" id="c2-vo-formula-card">
+            <span>Custo de contratação</span>
+            <span>−</span>
+            <span>Despesas operacionais com RPA</span>
+          </div>
+        </div>
+        <div class="c2-vo-hold__impact-block">
+          <p class="c2-vo-hold__section-title" id="c2-vo-impact-h">Impacto estratégico</p>
+          <p class="c2-vo-hold__impact-line" id="c2-vo-impact-line">Proteção do orçamento e das margens</p>
+        </div>
+      </div>
+      <div class="c2-vo-hold__photo">
+        <div class="c2-vo-hold__photo-inner" id="c2-vo-photo"></div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      var tl = gsap.timeline({ paused: true });
+
+      /* Local t=0 == global cena-02 t=33.45 */
+      tl.fromTo("#c2-vo-hold", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.75, ease: "power2.out" }, 0);
+      tl.fromTo("#c2-vo-title", { y: 28, opacity: 0 }, { y: 0, opacity: 1, duration: 0.65, ease: "power3.out" }, 0.1);
+      tl.fromTo("#c2-vo-photo", { scale: 1.06, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.9, ease: "power3.out" }, 0.15);
+      tl.fromTo("#c2-vo-sub", { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "expo.out" }, 0.25);
+      tl.fromTo("#c2-vo-lead", { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, 0.4);
+      tl.fromTo("#c2-vo-formula-h", { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 0.55);
+      tl.fromTo("#c2-vo-formula-card", { scale: 0.97, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.55, ease: "back.out(1.2)" }, 0.65);
+      tl.fromTo("#c2-vo-impact-h", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 0.8);
+      tl.fromTo("#c2-vo-impact-line", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.45, ease: "sine.out" }, 0.9);
+
+      // Hold the final visible state for the full clip duration (data-duration="7.5").
+      // Without this, GSAP's totalDuration (~1.35s) is shorter than the clip, which
+      // causes HyperFrames to reset the timeline to t=0 — making content invisible.
+      tl.set("#c2-vo-hold", { autoAlpha: 1 }, 7.5);
+
+      window.__timelines["cena-02-vo-hold"] = tl;
+    </script>
+  </div>
+</template>

@@ -1,0 +1,254 @@
+<template id="cena-08-template">
+  <div data-composition-id="cena-08" data-width="1920" data-height="1080">
+    <img class="bg-photo" src="../assets/colaborador_realizando_testes_no_tablet.jpeg" />
+    <div class="overlay"></div>
+    <div class="polaroid polaroid-08">
+      <img src="../assets/Apresentando_o_sistema.jpeg" />
+      <div class="polaroid-label">Sistema em operação</div>
+    </div>
+    <div class="scene-content">
+      <div class="header">BALANÇO</div>
+      <div class="title">São Mateus</div>
+      <div class="status-grid">
+        <div class="status-item">
+          <div class="status-icon">✓</div>
+          <div class="status-text">Alto engajamento</div>
+        </div>
+        <div class="status-item">
+          <div class="status-icon">✓</div>
+          <div class="status-text">Processo padronizado</div>
+        </div>
+        <div class="status-item">
+          <div class="status-icon">✓</div>
+          <div class="status-text">Estável e viável</div>
+        </div>
+      </div>
+      <div class="next-steps">
+        Análise de viabilidade em andamento<br/>
+        Planejamento de expansão para outras unidades
+      </div>
+    </div>
+
+    <style>
+      .polaroid {
+        position: absolute;
+        background: #fff;
+        padding: 10px 10px 36px 10px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.4), 0 2px 10px rgba(0,0,0,0.25);
+        border-radius: 2px;
+        z-index: 5;
+      }
+      .polaroid img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      .polaroid-label {
+        font-family: "Cabin", sans-serif;
+        font-size: 12px;
+        color: #555;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin-top: 8px;
+      }
+      .polaroid-08 {
+        width: 260px;
+        left: 80px;
+        top: 250px;
+        transform: rotate(-3deg);
+      }
+      #cena-08 {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #1e3460;
+        font-family: "Satoshi Variable", sans-serif;
+        color: #fdfbf4;
+        position: relative;
+      }
+      .bg-photo {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.35;
+      }
+      .overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 50% 40%, rgba(30, 52, 96, 0.8), rgba(0, 105, 179, 0.85));
+      }
+      .scene-content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        padding: 100px 180px;
+        box-sizing: border-box;
+        background: rgba(30, 52, 96, 0.4);
+      }
+      .header {
+        font-family: "Cabin", sans-serif;
+        font-size: 32px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.3em;
+        color: #86e5ff;
+        text-align: center;
+      }
+      .title {
+        font-size: 96px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        text-align: center;
+        line-height: 1;
+      }
+      .status-grid {
+        display: flex;
+        flex-direction: row;
+        gap: 32px;
+        margin-top: 24px;
+      }
+      .status-item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 16px;
+        padding: 24px 40px;
+        background: rgba(14, 106, 192, 0.15);
+        border: 2px solid rgba(14, 106, 192, 0.4);
+        border-radius: 16px;
+      }
+      .status-icon {
+        font-size: 48px;
+        font-weight: 900;
+        color: #86e5ff;
+      }
+      .status-text {
+        font-size: 28px;
+        font-weight: 700;
+        color: rgba(253, 251, 244, 0.9);
+      }
+      .next-steps {
+        font-size: 32px;
+        font-weight: 400;
+        text-align: center;
+        max-width: 1300px;
+        line-height: 1.5;
+        color: rgba(253, 251, 244, 0.85);
+        margin-top: 24px;
+        padding: 32px 48px;
+        background: rgba(30, 52, 96, 0.7);
+        border-radius: 16px;
+        border-left: 4px solid #0e6ac0;
+      }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // Photo entrance
+      tl.fromTo(".bg-photo",
+        { scale: 1.2, opacity: 0 },
+        { scale: 1, opacity: 0.35, duration: 1.2, ease: "power3.out" },
+        0
+      );
+
+      // Header entrance
+      tl.fromTo(".header",
+        { y: -40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
+        0.3
+      );
+
+      // Title entrance
+      tl.fromTo(".title",
+        { scale: 0.85, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.8, ease: "expo.out" },
+        0.7
+      );
+
+      // Status items entrance staggered
+      tl.fromTo(".status-item",
+        { x: -60, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.6, ease: "power3.out", stagger: 0.2 },
+        1.2
+      );
+
+      // Icons pop staggered
+      tl.fromTo(".status-icon",
+        { scale: 0 },
+        { scale: 1, duration: 0.4, ease: "back.out(2.5)", stagger: 0.2 },
+        1.6
+      );
+
+      // Next steps entrance
+      tl.fromTo(".next-steps",
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" },
+        2.8
+      );
+
+      // Status items glow (extended repeats)
+      tl.to(".status-item",
+        { borderColor: "rgba(14, 106, 192, 0.7)", boxShadow: "0 0 30px rgba(14, 106, 192, 0.3)", duration: 1.2, ease: "sine.inOut", yoyo: true, repeat: 3, stagger: 0.15 },
+        3.5
+      );
+
+      // Header pulse (extended repeats)
+      tl.to(".header",
+        { textShadow: "0 0 20px rgba(134,229,255,0.5)", duration: 1.3, ease: "sine.inOut", yoyo: true, repeat: 5 },
+        6.0
+      );
+
+      // Title breath (extended repeats)
+      tl.to(".title",
+        { scale: 1.02, duration: 1.5, ease: "sine.inOut", yoyo: true, repeat: 4 },
+        8.0
+      );
+
+      // Next steps glow (extended repeats)
+      tl.to(".next-steps",
+        { borderLeftColor: "#86e5ff", boxShadow: "0 0 25px rgba(134,229,255,0.3)", duration: 1.2, ease: "sine.inOut", yoyo: true, repeat: 4 },
+        10.0
+      );
+
+      // Status icons pulse cycle
+      tl.to(".status-icon",
+        { scale: 1.1, color: "#ffffff", duration: 1.0, ease: "sine.inOut", yoyo: true, repeat: 5, stagger: 0.1 },
+        15.0
+      );
+
+      // Polaroid entrance
+      tl.fromTo(".polaroid-08",
+        { x: -120, rotation: -15, opacity: 0 },
+        { x: 0, rotation: -3, opacity: 1, duration: 0.8, ease: "power3.out" },
+        0.5
+      );
+
+      // Title final pulse
+      tl.to(".title",
+        { scale: 1.02, duration: 1.0, ease: "sine.inOut", yoyo: true, repeat: 1 },
+        26.0
+      );
+
+      // Photo slow zoom (extended to 27s — covers entire 28s scene)
+      tl.to(".bg-photo",
+        { scale: 1.1, duration: 27.0, ease: "none", overwrite: "auto" },
+        1.0
+      );
+
+      window.__timelines["cena-08"] = tl;
+    </script>
+  </div>
+</template>

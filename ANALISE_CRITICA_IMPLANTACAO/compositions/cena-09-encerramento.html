@@ -1,0 +1,228 @@
+<template id="cena-09-template">
+  <div data-composition-id="cena-09" data-width="1920" data-height="1080">
+    <div class="scene-bg"></div>
+    <img class="bg-tech" src="../assets/brand/bg-tech-circuit.png" crossorigin="anonymous" />
+    <div class="gradient-overlay"></div>
+    <svg class="watermark" width="800" height="800" viewBox="0 0 200 200">
+      <path d="M100 20 L160 55 L160 125 L100 160 L40 125 L40 55 Z M80 70 L100 60 L120 70 L120 110 L100 120 L80 110 Z" fill="rgba(253,251,244,0.08)" />
+    </svg>
+    <div class="vignette"></div>
+    <div class="scene-content">
+      <div class="tagline">
+        <div class="word w1">CULTURA</div>
+        <div class="word w2">DE</div>
+        <div class="word w3">PREVENÇÃO</div>
+      </div>
+      <div class="subtitle">Porque mover o mundo com excelência<br/>começa por cuidar de quem está ao volante</div>
+      <div class="logo-group">
+        <img class="logo-sd" src="../assets/brand/logoSDwhite.svg" crossorigin="anonymous" />
+      </div>
+      <div class="co-logos">
+        <img class="logo-dti" src="../assets/brand/logo-dti.svg" crossorigin="anonymous" />
+        <img class="logo-aguia" src="../assets/brand/logo-aguia-branca.svg" crossorigin="anonymous" />
+      </div>
+    </div>
+
+    <style>
+      #cena-09 {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #1e3460;
+        font-family: "Satoshi Variable", sans-serif;
+        color: #fdfbf4;
+        position: relative;
+      }
+      .scene-bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #1e3460;
+      }
+      .bg-tech {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.5;
+      }
+      .gradient-overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(164deg, #1e3460 15.4%, #0069b3 86.5%);
+        mix-blend-mode: multiply;
+        opacity: 0.9;
+      }
+      .watermark {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        mix-blend-mode: soft-light;
+        z-index: 1;
+      }
+      .vignette {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        box-shadow: inset 0 0 120px rgba(0,0,0,0.3);
+        z-index: 2;
+      }
+      .scene-content {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 48px;
+        padding: 120px 180px;
+        box-sizing: border-box;
+      }
+      .tagline {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+      .word {
+        font-size: 88px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        line-height: 1;
+        text-align: center;
+      }
+      .w3 {
+        color: #86e5ff;
+      }
+      .subtitle {
+        font-size: 36px;
+        font-weight: 400;
+        text-align: center;
+        max-width: 1300px;
+        line-height: 1.5;
+        color: rgba(253, 251, 244, 0.85);
+        margin-top: 16px;
+      }
+      .logo-group {
+        margin-top: 48px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+      }
+      .logo-sd {
+        height: 80px;
+        width: auto;
+      }
+      .co-logos {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 40px;
+        margin-top: 24px;
+      }
+      .logo-dti {
+        height: 48px;
+        width: auto;
+      }
+      .logo-aguia {
+        height: 56px;
+        width: auto;
+      }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // Photo entrance
+      tl.fromTo(".bg-tech",
+        { scale: 1.1, opacity: 0 },
+        { scale: 1, opacity: 0.5, duration: 1.5, ease: "power2.out" },
+        0
+      );
+
+      // Words entrance staggered with varied eases
+      tl.fromTo(".w1",
+        { x: -80, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.8, ease: "expo.out" },
+        0.5
+      );
+      tl.fromTo(".w2",
+        { scale: 0.8, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.6, ease: "power3.out" },
+        1.0
+      );
+      tl.fromTo(".w3",
+        { x: 80, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.8, ease: "back.out(1.4)" },
+        1.4
+      );
+
+      // Highlight word glow
+      tl.to(".w3",
+        { textShadow: "0 0 30px rgba(134,229,255,0.8)", duration: 1.2, ease: "sine.inOut", yoyo: true, repeat: 2 },
+        2.5
+      );
+
+      // Subtitle entrance
+      tl.fromTo(".subtitle",
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" },
+        2.2
+      );
+
+      // Logo group entrance
+      tl.fromTo(".logo-group",
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7, ease: "power2.out" },
+        3.5
+      );
+
+      // Co-logos entrance
+      tl.fromTo(".co-logos",
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
+        4.0
+      );
+
+      // Words breath
+      tl.to(".w1, .w2, .w3",
+        { scale: 1.02, duration: 1.5, ease: "sine.inOut", yoyo: true, repeat: 2, stagger: 0.15 },
+        5.0
+      );
+
+      // Subtitle glow
+      tl.to(".subtitle",
+        { textShadow: "0 0 20px rgba(253,251,244,0.3)", duration: 1.2, ease: "sine.inOut", yoyo: true, repeat: 1 },
+        7.0
+      );
+
+      // Watermark rotation
+      tl.to(".watermark",
+        { rotation: 15, duration: 8.0, ease: "none" },
+        2.0
+      );
+
+      // Photo slow zoom
+      tl.to(".bg-tech",
+        { scale: 1.08, duration: 12.0, ease: "none", overwrite: "auto" },
+        0.5
+      );
+
+      // Final fade out
+      tl.to([".scene-content", ".bg-tech", ".gradient-overlay", ".watermark"],
+        { opacity: 0, duration: 2.0, ease: "power2.in" },
+        15.0
+      );
+
+      window.__timelines["cena-09"] = tl;
+    </script>
+  </div>
+</template>

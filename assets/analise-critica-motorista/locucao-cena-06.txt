@@ -1,0 +1,1 @@
+Também são simulados cenários de decisão sob pressão. O tempo de reação é medido em milissegundos, garantindo que o motorista esteja apto para as exigências do trânsito.

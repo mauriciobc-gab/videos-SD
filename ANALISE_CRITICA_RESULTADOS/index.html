@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+  @font-face {
+    font-family: "Satoshi Variable";
+    src: url("./fonts/Satoshi-Variable.woff2") format("woff2");
+    font-weight: 300 900;
+    font-style: normal;
+    font-display: block;
+  }
+  @font-face {
+    font-family: "Cabin";
+    src: url("./fonts/Cabin-Bold.woff") format("woff");
+    font-weight: 700;
+    font-style: normal;
+    font-display: block;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    background: #1e3460;
+    font-family: "Satoshi Variable", sans-serif;
+    color: #fdfbf4;
+  }
+  #root {
+    width: 1920px;
+    height: 1080px;
+    position: relative;
+  }
+  .scene {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    background: #1e3460;
+  }
+  #c1 { z-index: 1; }
+  #c4 { z-index: 3; }
+  #el-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1920px;
+    height: 1080px;
+    z-index: 2;
+  }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-width="1920" data-height="1080" data-start="0" data-duration="130">
+
+  <!-- Scene 1: Intro title card -->
+  <div id="c1" class="scene clip" data-composition-id="cena-intro" data-composition-src="compositions/cena-intro.html" data-start="0" data-duration="3.5" data-track-index="10"></div>
+
+  <!-- Scene 2: Screen capture video (muted) -->
+  <video id="el-video" class="clip" data-start="3.5" data-duration="120" data-track-index="2" src="assets/video-dashboard-analise-critica.mp4" muted playsinline></video>
+
+  <!-- Background music -->
+  <audio id="bg-music" class="clip" data-start="0" data-duration="130" data-track-index="0" src="assets/kornevmusic-upbeat-happy-corporate-487426.mp3" data-volume="0.07"></audio>
+
+  <!-- Intro voiceover -->
+  <audio id="voice-intro" class="clip" data-start="0" data-duration="3.5" data-track-index="1" src="assets/voice-intro.mp3" data-volume="1"></audio>
+
+  <!-- Main voiceover -->
+  <audio id="voice-main" class="clip" data-start="3.5" data-duration="116.33" data-track-index="1" src="assets/voiceover.mp3" data-volume="1"></audio>
+
+  <!-- Outro voiceover -->
+  <audio id="voice-outro" class="clip" data-start="123.5" data-duration="5.43" data-track-index="1" src="assets/voice-outro.mp3" data-volume="1"></audio>
+
+  <!-- Scene 3: Outro signature -->
+  <div id="c4" class="scene clip" data-composition-id="cena-outro" data-composition-src="compositions/cena-outro.html" data-start="123.5" data-duration="6.5" data-track-index="10" data-layout-ignore></div>
+
+</div>
+
+<script>
+window.__timelines = window.__timelines || {};
+var tl = gsap.timeline({ paused: true });
+
+function crossfadeTransition(oldId, newId, T, dur) {
+  var half = dur / 2;
+  tl.set(newId, { opacity: 0, filter: "blur(4px)" }, T);
+  tl.to(oldId, { autoAlpha: 0, filter: "blur(4px)", duration: half, ease: "power2.in" }, T);
+  tl.to(newId, { opacity: 1, filter: "blur(0px)", duration: half, ease: "power2.out" }, T + half);
+}
+
+// Transition: Intro → Video (crossfade at 3.5s)
+crossfadeTransition("#c1", "#el-video", 3.5, 0.4);
+
+// Transition: Video → Outro (crossfade at 123.5s)
+crossfadeTransition("#el-video", "#c4", 123.5, 0.5);
+
+window.__timelines["main"] = tl;
+</script>
+</body>
+</html>

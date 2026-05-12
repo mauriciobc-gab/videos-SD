@@ -1,0 +1,153 @@
+<template id="cena-01-template">
+  <div data-composition-id="cena-01" data-width="1920" data-height="1080">
+    <div class="scene-bg"></div>
+    <svg class="grid-pattern" width="1920" height="1080" viewBox="0 0 1920 1080" preserveAspectRatio="none">
+      <defs>
+        <pattern id="grid-01" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+          <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(253,251,244,0.12)" stroke-width="1"/>
+        </pattern>
+      </defs>
+      <rect width="1920" height="1080" fill="url(#grid-01)"/>
+    </svg>
+    <div class="scene-content">
+      <div class="corner-accent corner-tl"></div>
+      <div class="corner-accent corner-tr"></div>
+      <div class="corner-accent corner-bl"></div>
+      <div class="corner-accent corner-br"></div>
+      <div class="title">IMPLANTAÇÃO</div>
+      <div class="subtitle">Análise Crítica do Motorista</div>
+      <div class="meta">São Mateus • Abril 2026</div>
+    </div>
+
+    <style>
+      #cena-01 {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #1e3460;
+        font-family: "Satoshi Variable", sans-serif;
+        color: #fdfbf4;
+        position: relative;
+      }
+      .scene-bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #1e3460;
+      }
+      .grid-pattern {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+      }
+      .scene-content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+        padding: 120px 160px;
+        box-sizing: border-box;
+      }
+      .corner-accent {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        border: 2px solid rgba(253, 251, 244, 0.2);
+      }
+      .corner-tl { top: 40px; left: 40px; border-right: none; border-bottom: none; }
+      .corner-tr { top: 40px; right: 40px; border-left: none; border-bottom: none; }
+      .corner-bl { bottom: 40px; left: 40px; border-right: none; border-top: none; }
+      .corner-br { bottom: 40px; right: 40px; border-left: none; border-top: none; }
+      .title {
+        font-size: 96px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        text-align: center;
+        line-height: 1;
+      }
+      .subtitle {
+        font-size: 48px;
+        font-weight: 600;
+        text-align: center;
+        color: #86e5ff;
+        line-height: 1.2;
+      }
+      .meta {
+        font-family: "Cabin", sans-serif;
+        font-size: 24px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.25em;
+        color: rgba(253, 251, 244, 0.7);
+        text-align: center;
+      }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // Corner accents fade in staggered
+      tl.fromTo(".corner-accent", 
+        { opacity: 0, scale: 0.8 },
+        { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out", stagger: 0.1 },
+        0.2
+      );
+
+      // Title entrance
+      tl.fromTo(".title",
+        { y: 60, opacity: 0, scale: 0.9 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: "power3.out" },
+        0.4
+      );
+
+      // Subtitle entrance
+      tl.fromTo(".subtitle",
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7, ease: "back.out(1.2)" },
+        0.8
+      );
+
+      // Meta entrance
+      tl.fromTo(".meta",
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" },
+        1.1
+      );
+
+      // Subtle breath on title
+      tl.to(".title",
+        { scale: 1.02, duration: 1.5, ease: "sine.inOut", yoyo: true, repeat: 2 },
+        1.8
+      );
+
+      // Subtitle glow pulse
+      tl.to(".subtitle",
+        { color: "#86e5ff", textShadow: "0 0 20px rgba(134,229,255,0.6)", duration: 1.2, ease: "sine.inOut", yoyo: true, repeat: 1 },
+        2.5
+      );
+
+      // Corner accents pulse
+      tl.to(".corner-accent",
+        { borderColor: "rgba(253, 251, 244, 0.5)", duration: 1.0, ease: "sine.inOut", yoyo: true, repeat: 2 },
+        3.5
+      );
+
+      // Title pulse to end
+      tl.to(".title",
+        { textShadow: "0 0 15px rgba(253,251,244,0.2)", duration: 1.0, ease: "sine.inOut", yoyo: true, repeat: 1 },
+        5.0
+      );
+
+      window.__timelines["cena-01"] = tl;
+    </script>
+  </div>
+</template>

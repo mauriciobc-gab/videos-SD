@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Environment
+.env
+
+# Rendered video output (HyperFrames)
+render/
+renders/
+**/render/
+**/renders/
+
+# Generated audio
+*.wav
+*.mp3
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE/editor
+.vscode/
+.idea/
+*.swp
+*.swo

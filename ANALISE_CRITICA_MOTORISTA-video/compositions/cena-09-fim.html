@@ -1,0 +1,171 @@
+<template id="cena-09-template">
+  <div id="cena-09" data-composition-id="cena-09" data-start="0" data-duration="10" data-width="1920" data-height="1080">
+    <style>
+      #cena-09 {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #1e3460;
+        font-family: "Satoshi Variable", sans-serif;
+        color: #fdfbf4;
+        position: relative;
+      }
+      .scene-content {
+        width: 100%;
+        height: 100%;
+        padding: 100px 140px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        background: rgba(30, 52, 96, 0.4);
+      }
+      .phrase-line {
+        font-size: 72px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+        text-align: center;
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+        background: rgba(30, 52, 96, 0.85);
+        padding: 8px 24px;
+        border-radius: 8px;
+        display: inline-block;
+      }
+      .phrase-line.highlight {
+        color: #fdfbf4;
+        text-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+      }
+      .logo-main {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .logo-icon {
+        width: 62px;
+        height: 73px;
+      }
+      .logo-wordmark {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.1;
+      }
+      .logo-wordmark-line1 {
+        font-size: 59px;
+        font-weight: 700;
+        color: #fdfbf4;
+        letter-spacing: -0.01em;
+      }
+      .logo-wordmark-line2 {
+        font-size: 59px;
+        font-weight: 400;
+        color: #fdfbf4;
+        letter-spacing: 0.05em;
+      }
+      .co-logos {
+        display: flex;
+        align-items: center;
+        gap: 21px;
+        margin-top: 24px;
+      }
+      .co-logo-dti {
+        width: 186px;
+        height: 80px;
+      }
+      .co-logo-aguia {
+        width: 354px;
+        height: 91px;
+      }
+      .bg-photo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.5;
+        pointer-events: none;
+      }
+      .gradient-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(164deg, #1e3460 15.4%, #0069b3 86.5%);
+        mix-blend-mode: multiply;
+        pointer-events: none;
+      }
+      .sd-watermark {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 800px;
+        height: auto;
+        opacity: 0.08;
+        mix-blend-mode: soft-light;
+        pointer-events: none;
+      }
+      .vignette {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        box-shadow: inset 0 0 120px rgba(0,0,0,0.3);
+      }
+    </style>
+
+    <img class="bg-photo" src="../assets/brand/bg-tech-circuit.png" alt="" />
+    <div class="gradient-overlay"></div>
+    <img class="sd-watermark" src="../assets/brand/icon-sd-white-vertical.svg" alt="" />
+    <div class="vignette"></div>
+
+    <div class="scene-content">
+      <div class="phrase-line" id="c9-w1">MAIS DO QUE UMA FERRAMENTA DIGITAL</div>
+      <div class="phrase-line highlight" id="c9-w2">UM ATIVO ESTRATÉGICO</div>
+      <div class="phrase-line" id="c9-w3">DTI E SOLUÇÕES DIGITAIS</div>
+      <div class="phrase-line highlight" id="c9-w4">TRANSFORMANDO DADOS EM DECISÕES MAIS SEGURAS</div>
+
+      <div class="logo-end" id="c9-logo">
+        <div class="logo-main">
+          <img class="logo-icon" src="../assets/brand/icon-sd-white-horizontal-dark.svg" alt="SD" />
+          <div class="logo-wordmark">
+            <div class="logo-wordmark-line1">Soluções</div>
+            <div class="logo-wordmark-line2">Digitais</div>
+          </div>
+        </div>
+        <div class="co-logos">
+          <img class="co-logo-dti" src="../assets/brand/logo-dti.svg" alt="DTI" />
+          <img class="co-logo-aguia" src="../assets/brand/logo-aguia-branca.svg" alt="Grupo Águia Branca" />
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      var tl = gsap.timeline({ paused: true });
+      var beat = 10;
+
+      // VO: 0.06s "mais do que uma ferramenta", 1.74s "um ativo estratégico", 2.94s "DTI", 4.92s "transformando"
+      tl.fromTo("#c9-w1", { opacity: 0, y: 40, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "expo.out" }, 0.3);
+      tl.fromTo("#c9-w2", { opacity: 0, y: 40, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "power3.out" }, 1.8);
+      tl.fromTo("#c9-w3", { opacity: 0, y: 40, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.9, ease: "power3.out" }, 3.0);
+      tl.fromTo("#c9-w4", { opacity: 0, y: 40, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 1.0, ease: "expo.out" }, 5.0);
+
+      tl.to("#c9-w2, #c9-w4", { textShadow: "0 0 80px rgba(14,106,192,1)", duration: 1.5, ease: "sine.inOut", yoyo: true, repeat: 1 }, 5.5);
+
+      tl.fromTo("#c9-logo", { opacity: 0, y: 30, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 1.2, ease: "power2.out" }, 6.2);
+
+      tl.to(".scene-content", { opacity: 0, duration: 1.0, ease: "power2.in" }, beat - 1.5);
+
+      window.__timelines["cena-09"] = tl;
+    </script>
+  </div>
+</template>

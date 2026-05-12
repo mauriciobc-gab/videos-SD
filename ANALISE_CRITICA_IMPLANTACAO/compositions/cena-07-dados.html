@@ -1,0 +1,200 @@
+<template id="cena-07-template">
+  <div data-composition-id="cena-07" data-width="1920" data-height="1080">
+    <img class="bg-photo" src="../assets/Colaborador_verifica_resultados.jpeg" />
+    <svg class="hex-pattern" width="1920" height="1080" viewBox="0 0 1920 1080" preserveAspectRatio="none">
+      <defs>
+        <pattern id="hex-07" x="0" y="0" width="80" height="69.28" patternUnits="userSpaceOnUse">
+          <path d="M 40 0 L 60 17.32 L 60 51.96 L 40 69.28 L 20 51.96 L 20 17.32 Z" fill="none" stroke="rgba(253,251,244,0.08)" stroke-width="1"/>
+        </pattern>
+      </defs>
+      <rect width="1920" height="1080" fill="url(#hex-07)"/>
+    </svg>
+    <div class="overlay"></div>
+    <div class="scene-content">
+      <div class="title">Linha de Base</div>
+      <div class="subtitle">Desempenho Cognitivo dos Motoristas</div>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-icon">📊</div>
+          <div class="pillar-text">Identificar desvios</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">🎯</div>
+          <div class="pillar-text">Orientar decisões</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">📈</div>
+          <div class="pillar-text">Planejar próximos passos</div>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      #cena-07 {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #1e3460;
+        font-family: "Satoshi Variable", sans-serif;
+        color: #fdfbf4;
+        position: relative;
+      }
+      .bg-photo {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.3;
+      }
+      .hex-pattern {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+      }
+      .overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, rgba(30, 52, 96, 0.85), rgba(0, 105, 179, 0.75));
+        z-index: 2;
+      }
+      .scene-content {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 48px;
+        padding: 100px 160px;
+        box-sizing: border-box;
+        background: rgba(30, 52, 96, 0.4);
+      }
+      .title {
+        font-size: 96px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        text-align: center;
+        line-height: 1;
+      }
+      .subtitle {
+        font-size: 42px;
+        font-weight: 600;
+        text-align: center;
+        color: #86e5ff;
+        line-height: 1.3;
+        max-width: 1200px;
+      }
+      .pillars {
+        display: flex;
+        flex-direction: row;
+        gap: 40px;
+        margin-top: 24px;
+      }
+      .pillar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 40px 48px;
+        background: rgba(14, 106, 192, 0.12);
+        border: 2px solid rgba(14, 106, 192, 0.35);
+        border-radius: 20px;
+        width: 320px;
+      }
+      .pillar-icon {
+        font-size: 72px;
+      }
+      .pillar-text {
+        font-size: 28px;
+        font-weight: 700;
+        text-align: center;
+        line-height: 1.3;
+        color: rgba(253, 251, 244, 0.9);
+      }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // Photo entrance
+      tl.fromTo(".bg-photo",
+        { scale: 1.15, opacity: 0 },
+        { scale: 1, opacity: 0.3, duration: 1.0, ease: "power3.out" },
+        0
+      );
+
+      // Title entrance
+      tl.fromTo(".title",
+        { y: 60, opacity: 0, scale: 0.9 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: "expo.out" },
+        0.3
+      );
+
+      // Subtitle entrance
+      tl.fromTo(".subtitle",
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7, ease: "back.out(1.2)" },
+        0.7
+      );
+
+      // Pillars entrance staggered
+      tl.fromTo(".pillar",
+        { scale: 0.85, y: 50, opacity: 0 },
+        { scale: 1, y: 0, opacity: 1, duration: 0.7, ease: "back.out(1.5)", stagger: 0.2 },
+        1.2
+      );
+
+      // Icons pop staggered
+      tl.fromTo(".pillar-icon",
+        { scale: 0, rotation: -90 },
+        { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(2)", stagger: 0.2 },
+        1.8
+      );
+
+      // Pillars pulse
+      tl.to(".pillar",
+        { borderColor: "rgba(14, 106, 192, 0.6)", boxShadow: "0 0 30px rgba(14, 106, 192, 0.3)", duration: 1.0, ease: "sine.inOut", yoyo: true, repeat: 2, stagger: 0.15 },
+        3.0
+      );
+
+      // Title breath
+      tl.to(".title",
+        { scale: 1.02, duration: 1.5, ease: "sine.inOut", yoyo: true, repeat: 2 },
+        6.0
+      );
+
+      // Subtitle glow
+      tl.to(".subtitle",
+        { textShadow: "0 0 25px rgba(134,229,255,0.5)", duration: 1.3, ease: "sine.inOut", yoyo: true, repeat: 2 },
+        8.5
+      );
+
+      // Icons rotate
+      tl.to(".pillar-icon",
+        { rotation: 360, duration: 2.0, ease: "power1.inOut", stagger: 0.3 },
+        11.0
+      );
+
+      // Pillars final glow
+      tl.to(".pillar",
+        { borderColor: "rgba(14, 106, 192, 0.7)", boxShadow: "0 0 40px rgba(14, 106, 192, 0.4)", duration: 1.0, ease: "sine.inOut", yoyo: true, repeat: 1 },
+        14.0
+      );
+
+      // Photo slow zoom (extended)
+      tl.to(".bg-photo",
+        { scale: 1.08, duration: 15.0, ease: "none" },
+        1.0
+      );
+
+      window.__timelines["cena-07"] = tl;
+    </script>
+  </div>
+</template>

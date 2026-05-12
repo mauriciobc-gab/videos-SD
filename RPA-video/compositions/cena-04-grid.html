@@ -1,0 +1,196 @@
+<template id="cena-04-template">
+  <div id="cena-04" data-composition-id="cena-04" data-start="0" data-width="1920" data-height="1080">
+    <style>
+      #cena-04 {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #1e3460;
+        font-family: "Satoshi Variable", sans-serif;
+        color: #fdfbf4;
+        position: relative;
+      }
+      .scene-content {
+        width: 100%;
+        height: 100%;
+        padding: 80px;
+        box-sizing: border-box;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 24px;
+        background: rgba(30, 52, 96, 0.4);
+      }
+      .quad {
+        border-radius: 24px;
+        padding: 48px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(14, 106, 192, 0.25);
+        background: rgba(14, 106, 192, 0.08);
+      }
+      .quad-icon {
+        width: 72px;
+        height: 72px;
+        margin-bottom: 16px;
+      }
+      .quad-header {
+        font-family: "Cabin", sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: rgba(253, 251, 244, 0.85);
+      }
+      .quad-value {
+        font-size: 72px;
+        font-weight: 900;
+        line-height: 1;
+        font-variant-numeric: tabular-nums;
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+        background: rgba(30, 52, 96, 0.85);
+        padding: 4px 12px;
+        border-radius: 4px;
+        display: inline-block;
+      }
+      .quad-label {
+        font-size: 24px;
+        font-weight: 400;
+        color: rgba(253, 251, 244, 0.8);
+        margin-top: 8px;
+      }
+      .quad-highlight {
+        border-color: rgba(14, 106, 192, 0.6);
+        background: rgba(14, 106, 192, 0.15);
+      }
+      .glow-line {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: #0e6ac0;
+        box-shadow: 0 0 30px #0e6ac0;
+        transform: scaleX(0);
+        transform-origin: left center;
+      }
+      .section-title {
+        position: absolute;
+        top: 32px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: "Cabin", sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: rgba(253, 251, 244, 0.7);
+        z-index: 10;
+      }
+    </style>
+
+    <div class="section-title" id="c4-header">Entregas de Impacto</div>
+
+    <div class="scene-content">
+      <div class="quad" id="c4-q1">
+        <div class="glow-line"></div>
+        <div>
+          <svg class="quad-icon" viewBox="0 0 72 72" fill="none" stroke="#fdfbf4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="10" y="20" width="52" height="40" rx="4"/>
+            <path d="M10 28h52"/>
+            <path d="M22 44h20"/>
+            <circle cx="54" cy="48" r="4" stroke="#0e6ac0" fill="#0e6ac0" fill-opacity="0.3"/>
+          </svg>
+          <div class="quad-header">Comércio</div>
+        </div>
+        <div>
+          <div class="quad-value">R$ 184k</div>
+          <div class="quad-label">Saving — Automação PDS</div>
+        </div>
+      </div>
+
+      <div class="quad" id="c4-q2">
+        <div class="glow-line"></div>
+        <div>
+          <svg class="quad-icon" viewBox="0 0 72 72" fill="none" stroke="#fdfbf4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="8" y="12" width="28" height="20" rx="3"/>
+            <path d="M8 20h28"/>
+            <circle cx="44" cy="48" r="14" stroke="#0e6ac0"/>
+            <path d="M44 40v8l6 4" stroke="#0e6ac0"/>
+            <line x1="36" y1="22" x2="44" y2="34" stroke="#fdfbf4" stroke-dasharray="4 3"/>
+          </svg>
+          <div class="quad-header">Passageiros</div>
+        </div>
+        <div>
+          <div class="quad-value">R$ 200k</div>
+          <div class="quad-label">Cost Avoidance — Mensageria</div>
+        </div>
+      </div>
+
+      <div class="quad quad-highlight" id="c4-q3">
+        <div class="glow-line"></div>
+        <div>
+          <svg class="quad-icon" viewBox="0 0 72 72" fill="none" stroke="#fdfbf4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M36 12c-8 0-14 6-16 14 0 4 2 8 6 10-2 2-4 6-4 10 0 8 6 14 14 14s14-6 14-14c0-4-2-8-4-10 4-2 6-6 6-10-2-8-8-14-16-14z"/>
+            <path d="M28 30h16M30 38h12M32 46h8" stroke="#0e6ac0"/>
+            <circle cx="36" cy="24" r="3" fill="#0e6ac0" stroke="none"/>
+          </svg>
+          <div class="quad-header">Logística</div>
+        </div>
+        <div>
+          <div class="quad-value">R$ 425k</div>
+          <div class="quad-label">Saving — Pedidos de Compra IA</div>
+        </div>
+      </div>
+
+      <div class="quad" id="c4-q4">
+        <div class="glow-line"></div>
+        <div>
+          <svg class="quad-icon" viewBox="0 0 72 72" fill="none" stroke="#fdfbf4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="36" cy="36" r="22"/>
+            <circle cx="36" cy="36" r="10" stroke="#0e6ac0"/>
+            <path d="M36 8v8M36 56v8M8 36h8M56 36h8"/>
+            <path d="M16 16l6 6M50 50l6 6M16 56l6-6M50 22l6-6" opacity="0.4"/>
+          </svg>
+          <div class="quad-header">Comércio</div>
+        </div>
+        <div>
+          <div class="quad-value">R$ 90k</div>
+          <div class="quad-label">Saving — Peças BYD</div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      var tl = gsap.timeline({ paused: true });
+      var beat = 35.19;
+
+      // Header
+      tl.fromTo("#c4-header", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, 0.5);
+
+      // Quadrants light up one by one
+      var quads = ["#c4-q1", "#c4-q2", "#c4-q3", "#c4-q4"];
+      quads.forEach(function(sel, i) {
+        var el = document.querySelector(sel);
+        var glow = el.querySelector(".glow-line");
+        var val = el.querySelector(".quad-value");
+        var icon = el.querySelector(".quad-icon");
+
+        tl.fromTo(el, { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 1.0, ease: "power3.out" }, 2.0 + i * 6.0);
+        tl.fromTo(glow, { scaleX: 0 }, { scaleX: 1, duration: 1.2, ease: "power2.out" }, 2.3 + i * 6.0);
+        tl.fromTo(icon, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8, ease: "back.out(1.4)" }, 2.6 + i * 6.0);
+        tl.fromTo(val, { opacity: 0, y: 30, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 1.0, ease: "expo.out" }, 3.2 + i * 6.0);
+      });
+
+      // Ambient glow pulse on highlight quadrant
+      tl.to("#c4-q3", { boxShadow: "inset 0 0 60px rgba(14,106,192,0.25)", duration: 2, ease: "sine.inOut", yoyo: true, repeat: 0 }, 32);
+
+      window.__timelines["cena-04"] = tl;
+    </script>
+  </div>
+</template>

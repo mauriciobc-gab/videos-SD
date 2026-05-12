@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+  @font-face {
+    font-family: "Satoshi Variable";
+    src: url("./fonts/Satoshi-Variable.woff2") format("woff2");
+    font-weight: 300 900;
+    font-style: normal;
+    font-display: block;
+  }
+  @font-face {
+    font-family: "Cabin";
+    src: url("./fonts/Cabin-Bold.woff") format("woff");
+    font-weight: 700;
+    font-style: normal;
+    font-display: block;
+  }
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+  }
+  body {
+    background: #1e3460;
+    font-family: "Satoshi Variable", sans-serif;
+    color: #fdfbf4;
+  }
+  #root {
+    width: 1920px;
+    height: 1080px;
+    position: relative;
+  }
+  .scene {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    background: #1e3460;
+  }
+  #c1  { z-index: 1; }
+  #c2  { z-index: 2; }
+  #c2b { z-index: 2; }
+  #c3  { z-index: 3; }
+  #c4  { z-index: 4; }
+  #c5  { z-index: 5; }
+  #c6  { z-index: 6; }
+  #c7  { z-index: 7; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-width="1920" data-height="1080" data-start="0" data-duration="172.97">
+  <div id="c1" class="scene clip" data-composition-id="cena-01" data-composition-src="compositions/cena-01-abertura.html" data-start="0" data-duration="10.3" data-track-index="10" data-layout-allow-overflow="" style="z-index: 3"></div>
+  
+  <div id="c2" class="scene clip" data-composition-id="cena-02-charts" data-composition-src="compositions/cena-02-charts.html" data-start="10.3" data-duration="33.75" data-track-index="11" data-layout-allow-overflow="" style="z-index: 3"></div>
+  <div id="c2b" class="scene clip" data-composition-id="cena-02-vo-hold" data-composition-src="compositions/cena-02-vo-hold.html" data-start="44.05" data-duration="8.32" data-track-index="12" data-layout-allow-overflow="" style="z-index: 3"></div>
+
+  <div id="c4" class="scene clip" data-composition-id="cena-04" data-composition-src="compositions/cena-04-grid.html" data-start="52.37" data-duration="36.73" data-track-index="11" data-layout-allow-overflow="" style="z-index: 3"></div>
+  <div id="c5" class="scene clip" data-composition-id="cena-05" data-composition-src="compositions/cena-05-highlight.html" data-start="89.10" data-duration="15.52" data-track-index="12" data-layout-allow-overflow="" style="z-index: 3"></div>
+  <div id="c3" class="scene clip" data-composition-id="cena-03" data-composition-src="compositions/cena-03-rh.html" data-start="104.62" data-duration="41.56" data-track-index="11" data-layout-allow-overflow="" style="z-index: 3"></div>
+  <div id="c6" class="scene clip" data-composition-id="cena-06" data-composition-src="compositions/cena-06-pilares.html" data-start="146.18" data-duration="20.54" data-track-index="12" data-layout-allow-overflow="" style="z-index: 3"></div>
+  <div id="c7" class="scene clip" data-composition-id="cena-07" data-composition-src="compositions/cena-07-fim.html" data-start="166.72" data-duration="6.25" data-track-index="11" data-layout-allow-overflow="" style="z-index: 3"></div>
+
+  <!-- BACKGROUND MUSIC ONLY - All voiceovers removed -->
+  <audio id="bg-music" data-start="0" data-duration="172.97" data-track-index="1" src="assets/kornevmusic-upbeat-happy-corporate-487426-full.mp3" data-volume="0.07" style="z-index: 1"></audio>
+</div>
+
+<script>
+window.__timelines = window.__timelines || {};
+var tl = gsap.timeline({ paused: true });
+
+/* --- Transition helpers ---
+   Rules:
+   - Old scene: animate autoAlpha→0 (fade out + hide) — safe because HyperFrames hides it too
+   - New scene: use opacity (NOT autoAlpha) to avoid fighting HyperFrames visibility
+   - Use tl.set() at transition start, NOT gsap.set() at page load (rule #10)
+*/
+
+function glitchTransition(oldId, newId, T, dur) {
+  var half = dur / 2;
+  tl.to(oldId, { skewX: 8, scale: 1.02, duration: 0.03, ease: "none" }, T);
+  tl.to(oldId, { skewX: -6, scale: 0.99, duration: 0.03, ease: "none" }, T + 0.03);
+  tl.to(oldId, { skewX: 4, scale: 1.01, duration: 0.03, ease: "none" }, T + 0.06);
+  tl.to(oldId, { skewX: 0, scale: 0.95, autoAlpha: 0, filter: "blur(6px)", duration: half - 0.09, ease: "power2.in" }, T + 0.09);
+  tl.set(newId, { opacity: 0, scale: 1.05, filter: "blur(6px)" }, T);
+  tl.to(newId, { opacity: 1, scale: 1, filter: "blur(0px)", duration: half, ease: "power3.out" }, T + half);
+}
+
+function slideTransition(oldId, newId, T, dur, dir) {
+  var half = dur / 2;
+  var xOut = dir === "left" ? -1920 : dir === "right" ? 1920 : 0;
+  var yOut = dir === "up" ? -1080 : dir === "down" ? 1080 : 0;
+  var xIn = dir === "left" ? 1920 : dir === "right" ? -1920 : 0;
+  var yIn = dir === "up" ? 1080 : dir === "down" ? -1080 : 0;
+  tl.set(newId, { opacity: 0, x: xIn, y: yIn, filter: "blur(8px)", scale: 1 }, T);
+  tl.to(oldId, { x: xOut, y: yOut, filter: "blur(8px)", autoAlpha: 0, duration: half, ease: "power3.in" }, T);
+  tl.to(newId, { x: 0, y: 0, filter: "blur(0px)", opacity: 1, duration: half, ease: "power3.out" }, T + half);
+}
+
+function zoomTransition(oldId, newId, T, dur) {
+  var half = dur / 2;
+  tl.set(newId, { opacity: 0, scale: 0.6, filter: "blur(10px)" }, T);
+  tl.set(oldId, { zIndex: 10 }, T);
+  tl.to(oldId, { scale: 1.8, autoAlpha: 0, filter: "blur(10px)", duration: half, ease: "power3.in" }, T);
+  tl.to(newId, { scale: 1, opacity: 1, filter: "blur(0px)", duration: half, ease: "power3.out" }, T + half);
+  tl.set(oldId, { zIndex: "auto" }, T + dur);
+  tl.set(newId, { zIndex: "auto" }, T + dur);
+}
+
+function crossfadeTransition(oldId, newId, T, dur) {
+  var half = dur / 2;
+  tl.set(newId, { opacity: 0, filter: "blur(4px)", scale: 1 }, T);
+  tl.to(oldId, { autoAlpha: 0, filter: "blur(4px)", duration: half, ease: "power2.in" }, T);
+  tl.to(newId, { opacity: 1, filter: "blur(0px)", duration: half, ease: "power2.out" }, T + half);
+}
+
+/* --- Transitions ---
+   Scene overlap periods (created by alternating track-index):
+   C1 (track 10): 0.0–10.3   |  C2 (track 11): 10.3–44.05 → overlap 10.3–10.3
+   C2 (track 11): 10.3–44.05  |  C2b (track 12): 44.05–51.85 → overlap 44.05–44.05
+   C2b (track 12): 44.05–51.85|  C4 (track 11): 51.85–87.44  → overlap 51.85–51.85
+   C4 (track 11): 51.85–87.44 |  C5 (track 12): 87.44–102.96→ overlap 87.44–87.44
+   C5 (track 12): 87.44–102.96| C3 (track 11): 102.96–141.56→ overlap 102.96–102.96
+   C3 (track 11): 102.96–141.56| C6 (track 12): 141.56–162.10→ overlap 141.56–141.56
+   C6 (track 12): 141.56–162.10| C7 (track 11): 162.10–168.35→ overlap 162.10–162.10
+ */
+
+// C1 → C2 @ 10.3s: Glitch
+glitchTransition("#c1", "#c2", 10.3, 0.3);
+
+// C2 → C2b @ 44.05s: Crossfade (charts to vo-hold)
+crossfadeTransition("#c2", "#c2b", 44.05, 0.3);
+
+// C2b → C4 @ 51.85s: Crossfade (vo-hold to grid)
+crossfadeTransition("#c2b", "#c4", 52.37, 0.4);
+
+// C4 → C5 @ 87.44s: Zoom through
+zoomTransition("#c4", "#c5", 89.10, 0.4);
+
+// C5 → C3 @ 102.96s: Glitch
+glitchTransition("#c5", "#c3", 104.62, 0.3);
+
+// C3 → C6 @ 141.56s: Slide down
+slideTransition("#c3", "#c6", 143.22, 0.4, "down");
+
+// C6 → C7 @ 162.10s: Crossfade
+crossfadeTransition("#c6", "#c7", 163.76, 0.5);
+
+window.__timelines["main"] = tl;
+</script>
+</body>
+</html>

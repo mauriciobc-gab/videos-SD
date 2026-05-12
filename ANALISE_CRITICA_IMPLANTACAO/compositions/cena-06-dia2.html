@@ -1,0 +1,236 @@
+<template id="cena-06-template">
+  <div data-composition-id="cena-06" data-width="1920" data-height="1080">
+    <img class="bg-photo" src="../assets/slide_2º_ciclo_de_testes.jpeg" />
+    <div class="overlay"></div>
+    <div class="polaroid polaroid-06">
+      <img src="../assets/Colaborador_verifica_resultados.jpeg" />
+      <div class="polaroid-label">Acompanhamento dos resultados</div>
+    </div>
+    <div class="scene-content">
+      <div class="header">DIA 2 — 15 DE ABRIL</div>
+      <div class="title">Continuidade</div>
+      <div class="description">
+        Testes desde as primeiras horas da manhã até o fim da tarde<br/>
+        Com acompanhamento presencial e supervisão in loco
+      </div>
+      <div class="stat-row">
+        <div class="stat-pill">
+          <div class="stat-value">32+</div>
+          <div class="stat-label">Motoristas</div>
+        </div>
+        <div class="stat-pill">
+          <div class="stat-value">2</div>
+          <div class="stat-label">Dias</div>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      .polaroid {
+        position: absolute;
+        background: #fff;
+        padding: 10px 10px 36px 10px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.4), 0 2px 10px rgba(0,0,0,0.25);
+        border-radius: 2px;
+        z-index: 5;
+      }
+      .polaroid img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      .polaroid-label {
+        font-family: "Cabin", sans-serif;
+        font-size: 12px;
+        color: #555;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin-top: 8px;
+      }
+      .polaroid-06 {
+        width: 280px;
+        right: 80px;
+        top: 240px;
+        transform: rotate(4deg);
+      }
+      #cena-06 {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #1e3460;
+        font-family: "Satoshi Variable", sans-serif;
+        color: #fdfbf4;
+        position: relative;
+      }
+      .bg-photo {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.38;
+      }
+      .overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(ellipse at 40% 50%, rgba(30, 52, 96, 0.75), rgba(0, 105, 179, 0.85));
+      }
+      .scene-content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        padding: 100px 180px;
+        box-sizing: border-box;
+        background: rgba(30, 52, 96, 0.4);
+      }
+      .header {
+        font-family: "Cabin", sans-serif;
+        font-size: 32px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.3em;
+        color: #86e5ff;
+        text-align: center;
+      }
+      .title {
+        font-size: 96px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        text-align: center;
+        line-height: 1;
+      }
+      .description {
+        font-size: 32px;
+        font-weight: 400;
+        text-align: center;
+        max-width: 1400px;
+        line-height: 1.5;
+        color: rgba(253, 251, 244, 0.9);
+      }
+      .stat-row {
+        display: flex;
+        flex-direction: row;
+        gap: 48px;
+        margin-top: 20px;
+      }
+      .stat-pill {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        padding: 32px 56px;
+        background: rgba(14, 106, 192, 0.15);
+        border: 2px solid rgba(14, 106, 192, 0.4);
+        border-radius: 20px;
+      }
+      .stat-value {
+        font-size: 80px;
+        font-weight: 900;
+        line-height: 1;
+        font-variant-numeric: tabular-nums;
+        color: #86e5ff;
+      }
+      .stat-label {
+        font-size: 24px;
+        font-weight: 400;
+        color: rgba(253, 251, 244, 0.85);
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+      }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // Photo entrance
+      tl.fromTo(".bg-photo",
+        { scale: 1.2, opacity: 0 },
+        { scale: 1, opacity: 0.38, duration: 1.2, ease: "power3.out" },
+        0
+      );
+
+      // Header entrance
+      tl.fromTo(".header",
+        { y: -30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
+        0.3
+      );
+
+      // Title entrance
+      tl.fromTo(".title",
+        { scale: 0.85, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.8, ease: "expo.out" },
+        0.7
+      );
+
+      // Description entrance
+      tl.fromTo(".description",
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" },
+        1.1
+      );
+
+      // Stat pills entrance staggered
+      tl.fromTo(".stat-pill",
+        { scale: 0.8, y: 40, opacity: 0 },
+        { scale: 1, y: 0, opacity: 1, duration: 0.6, ease: "back.out(1.4)", stagger: 0.15 },
+        1.6
+      );
+
+      // Values pulse
+      tl.to(".stat-value",
+        { scale: 1.1, duration: 0.8, ease: "sine.inOut", yoyo: true, repeat: 2, stagger: 0.2 },
+        2.5
+      );
+
+      // Header glow
+      tl.to(".header",
+        { textShadow: "0 0 20px rgba(134,229,255,0.5)", duration: 1.2, ease: "sine.inOut", yoyo: true, repeat: 3 },
+        5.0
+      );
+
+      // Title breath
+      tl.to(".title",
+        { scale: 1.02, duration: 1.5, ease: "sine.inOut", yoyo: true, repeat: 2 },
+        7.5
+      );
+
+      // Stat pills glow
+      tl.to(".stat-pill",
+        { boxShadow: "0 0 40px rgba(14, 106, 192, 0.5)", borderColor: "rgba(14, 106, 192, 0.6)", duration: 1.3, ease: "sine.inOut", yoyo: true, repeat: 2, stagger: 0.15 },
+        10.0
+      );
+
+      // Polaroid entrance
+      tl.fromTo(".polaroid-06",
+        { x: 100, rotation: 20, opacity: 0 },
+        { x: 0, rotation: 4, opacity: 1, duration: 0.8, ease: "power3.out" },
+        0.5
+      );
+
+      // Header glow to end
+      tl.to(".header",
+        { textShadow: "0 0 20px rgba(134,229,255,0.5)", duration: 1.2, ease: "sine.inOut", yoyo: true, repeat: 2 },
+        14.0
+      );
+
+      // Photo slow zoom (extended)
+      tl.to(".bg-photo",
+        { scale: 1.1, duration: 16.0, ease: "none", overwrite: "auto" },
+        1.0
+      );
+
+      window.__timelines["cena-06"] = tl;
+    </script>
+  </div>
+</template>

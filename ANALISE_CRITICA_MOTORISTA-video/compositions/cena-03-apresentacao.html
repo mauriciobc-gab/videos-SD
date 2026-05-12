@@ -1,0 +1,164 @@
+<template id="cena-03-template">
+  <div id="cena-03" data-composition-id="cena-03" data-start="0" data-duration="25" data-width="1920" data-height="1080">
+    <style>
+      #cena-03 {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #1e3460;
+        font-family: "Satoshi Variable", sans-serif;
+        color: #fdfbf4;
+        position: relative;
+      }
+      .scene-wrapper {
+        width: 100%;
+        height: 100%;
+        padding: 108px 160px 108px 231px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        gap: 100px;
+      }
+      .phone-area {
+        width: 402px;
+        height: 865px;
+        flex-shrink: 0;
+        position: relative;
+        filter: drop-shadow(0 40px 80px rgba(0,0,0,0.5));
+      }
+      .phone-video {
+        position: absolute;
+        top: 10px;
+        left: 8px;
+        width: 379px;
+        height: 845px;
+        object-fit: cover;
+        border-radius: 32px;
+      }
+      .phone-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+      .content-area {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 40px;
+        max-width: 900px;
+      }
+      .challenge-block {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .alert-label {
+        font-size: 24px;
+        font-weight: 700;
+        color: #fdfbf4;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .alert-big {
+        font-size: 64px;
+        font-weight: 900;
+        color: #86e5ff;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+      }
+      .alert-sub {
+        font-size: 28px;
+        font-weight: 400;
+        color: #b6becf;
+        line-height: 1.4;
+      }
+      .solution-block {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .solution-title {
+        font-size: 36px;
+        font-weight: 700;
+        color: #fdfbf4;
+        letter-spacing: 0.04em;
+      }
+      .solution-desc {
+        font-size: 26px;
+        font-weight: 300;
+        color: #86e5ff;
+        line-height: 1.4;
+        max-width: 700px;
+      }
+      .solution-highlight {
+        font-size: 32px;
+        font-weight: 700;
+        color: #fdfbf4;
+      }
+      .warning-icons {
+        display: flex;
+        gap: 40px;
+        margin-top: 8px;
+      }
+      .warning-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 3px solid rgba(134, 229, 255, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 36px;
+        color: #86e5ff;
+        opacity: 0;
+      }
+    </style>
+
+    <div class="scene-wrapper">
+      <div class="phone-area" id="c3-phone">
+        <video id="demo-c3" class="phone-video clip" data-start="8" data-duration="17" data-track-index="0" src="../assets/demo-analise-critica-motorista.mp4" muted playsinline data-media-start="0"></video>
+        <img class="phone-overlay" src="../assets/phone-mockup.png" alt="" />
+      </div>
+      <div class="content-area">
+        <div class="challenge-block" id="c3-challenge">
+          <div class="alert-label" id="c3-alert-label">DESAFIO OPERACIONAL</div>
+          <div class="alert-sub" id="c3-alert-sub">Alguns desafios não permitem margem de erro</div>
+          <div class="alert-big" id="c3-alert-big">Estado de alerta e fadiga dos motoristas</div>
+        </div>
+        <div class="solution-block" id="c3-solution">
+          <div class="solution-title" id="c3-sol-title">Plataforma Digital de Análise</div>
+          <div class="solution-desc" id="c3-sol-desc">Desenvolvida pelo time de Soluções Digitais para atuar no ponto crítico da segurança operacional. Um ativo estratégico a serviço da prevenção.</div>
+          <div class="solution-highlight" id="c3-sol-highlight">Ativo Estratégico de Segurança</div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      var tl = gsap.timeline({ paused: true });
+
+      // Phase 1: Challenge (0.06s "Alguns desafios" → 7.06s "motoristas")
+      tl.fromTo("#c3-alert-label", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 0.3);
+      tl.fromTo("#c3-alert-sub", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 0.3);
+      tl.fromTo("#c3-alert-big", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 3.1);
+
+      // Phone enters near transition (VO: "motoristas." ends 7.06s → "Para atuar" starts 7.12s)
+      tl.fromTo("#c3-phone", { opacity: 0, scale: 0.85, x: -40 }, { opacity: 1, scale: 1, x: 0, duration: 1.0, ease: "back.out(1.4)" }, 6.8);
+
+      // Phase 2: Solution (7.12s "Para atuar" → 19.92s)
+      tl.fromTo("#c3-sol-title", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 7.5);
+      tl.fromTo("#c3-sol-desc", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 8.2);
+      tl.fromTo("#c3-sol-highlight", { opacity: 0, y: 20, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "back.out(1.2)" }, 16.1);
+
+      // Subtle pulse on highlight — starts after entrance completes at 16.7
+      tl.to("#c3-sol-highlight", { scale: 1.03, duration: 1.5, ease: "sine.inOut", yoyo: true, repeat: 1 }, 17.0);
+
+      window.__timelines["cena-03"] = tl;
+    </script>
+  </div>
+</template>

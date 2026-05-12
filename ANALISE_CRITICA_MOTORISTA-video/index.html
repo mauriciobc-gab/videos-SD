@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+  @font-face {
+    font-family: "Satoshi Variable";
+    src: url("./fonts/Satoshi-Variable.woff2") format("woff2");
+    font-weight: 300 900;
+    font-style: normal;
+    font-display: block;
+  }
+  @font-face {
+    font-family: "Cabin";
+    src: url("./fonts/Cabin-Bold.woff") format("woff");
+    font-weight: 700;
+    font-style: normal;
+    font-display: block;
+  }
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+  }
+  body {
+    background: #1e3460;
+    font-family: "Satoshi Variable", sans-serif;
+    color: #fdfbf4;
+  }
+  #root {
+    width: 1920px;
+    height: 1080px;
+    position: relative;
+  }
+  .scene {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    background: #1e3460;
+  }
+  #c1  { z-index: 1; }
+  #c2  { z-index: 2; }
+  #c3  { z-index: 3; }
+  #c4  { z-index: 4; }
+  #c5  { z-index: 5; }
+  #c6  { z-index: 6; }
+  #c7  { z-index: 7; }
+  #c8  { z-index: 8; }
+  #c9  { z-index: 9; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-width="1920" data-height="1080" data-start="0" data-duration="121">
+  <div id="c1" class="scene clip" data-composition-id="cena-01" data-composition-src="compositions/cena-01-abertura.html" data-start="0" data-duration="17" data-track-index="10" data-layout-allow-overflow="" style="z-index: 3"></div>
+  <div id="c3" class="scene clip" data-composition-id="cena-03" data-composition-src="compositions/cena-03-apresentacao.html" data-start="17" data-duration="25" data-track-index="11" data-layout-allow-overflow="" style="z-index: 3"></div>
+  <div id="c4" class="scene clip" data-composition-id="cena-04" data-composition-src="compositions/cena-04-cognicao.html" data-start="42" data-duration="13" data-track-index="11" data-layout-allow-overflow="" style="z-index: 3"></div>
+  <div id="c5" class="scene clip" data-composition-id="cena-05" data-composition-src="compositions/cena-05-atencao.html" data-start="55" data-duration="12" data-track-index="10" data-layout-allow-overflow="" style="z-index: 3"></div>
+  <div id="c6" class="scene clip" data-composition-id="cena-06" data-composition-src="compositions/cena-06-decisao.html" data-start="67" data-duration="14" data-track-index="11" data-layout-allow-overflow="" style="z-index: 3"></div>
+  <div id="c7" class="scene clip" data-composition-id="cena-07" data-composition-src="compositions/cena-07-raciocinio.html" data-start="81" data-duration="13" data-track-index="10" data-layout-allow-overflow="" style="z-index: 3"></div>
+  <div id="c8" class="scene clip" data-composition-id="cena-08" data-composition-src="compositions/cena-08-dados.html" data-start="94" data-duration="17" data-track-index="11" data-layout-allow-overflow="" style="z-index: 3"></div>
+  <div id="c9" class="scene clip" data-composition-id="cena-09" data-composition-src="compositions/cena-09-fim.html" data-start="111" data-duration="10" data-track-index="10" data-layout-allow-overflow="" style="z-index: 3"></div>
+
+  <audio id="audio-bg" class="clip" data-start="0" data-duration="121" data-track-index="0" src="assets/kornevmusic-upbeat-happy-corporate-487426.mp3" data-volume="0.07" style="z-index: 1"></audio>
+  <audio id="audio-c1" class="clip" data-start="1.5" data-duration="3.48" data-track-index="1" src="assets/voice-cena-01.mp3" data-volume="1" style="z-index: 2"></audio>
+  <audio id="audio-c2" class="clip" data-start="5"   data-duration="10.12" data-track-index="1" src="assets/voice-cena-02.mp3" data-volume="1" style="z-index: 2"></audio>
+  <audio id="audio-c3" class="clip" data-start="17"  data-duration="22.89" data-track-index="1" src="assets/voice-cena-03.mp3" data-volume="1" style="z-index: 2"></audio>
+  <audio id="audio-c4" class="clip" data-start="42"  data-duration="11.10" data-track-index="1" src="assets/voice-cena-04.mp3" data-volume="1" style="z-index: 2"></audio>
+  <audio id="audio-c5" class="clip" data-start="55"  data-duration="10.68" data-track-index="1" src="assets/voice-cena-05.mp3" data-volume="1" style="z-index: 2"></audio>
+  <audio id="audio-c6" class="clip" data-start="67"  data-duration="11.75" data-track-index="1" src="assets/voice-cena-06.mp3" data-volume="1" style="z-index: 2"></audio>
+  <audio id="audio-c7" class="clip" data-start="81"  data-duration="10.63" data-track-index="1" src="assets/voice-cena-07.mp3" data-volume="1" style="z-index: 2"></audio>
+  <audio id="audio-c8" class="clip" data-start="94"  data-duration="14.81" data-track-index="1" src="assets/voice-cena-08.mp3" data-volume="1" style="z-index: 2"></audio>
+  <audio id="audio-c9" class="clip" data-start="111" data-duration="7.48" data-track-index="1" src="assets/voice-cena-09.mp3" data-volume="1" style="z-index: 2"></audio>
+</div>
+
+<script>
+window.__timelines = window.__timelines || {};
+var tl = gsap.timeline({ paused: true });
+
+function glitchTransition(oldId, newId, T, dur) {
+  var half = dur / 2;
+  tl.to(oldId, { skewX: 8, scale: 1.02, duration: 0.03, ease: "none" }, T);
+  tl.to(oldId, { skewX: -6, scale: 0.99, duration: 0.03, ease: "none" }, T + 0.03);
+  tl.to(oldId, { skewX: 4, scale: 1.01, duration: 0.03, ease: "none" }, T + 0.06);
+  tl.to(oldId, { skewX: 0, scale: 0.95, autoAlpha: 0, filter: "blur(6px)", duration: half - 0.09, ease: "power2.in" }, T + 0.09);
+  tl.set(newId, { opacity: 0, scale: 1.05, filter: "blur(6px)" }, T);
+  tl.to(newId, { opacity: 1, scale: 1, filter: "blur(0px)", duration: half, ease: "power3.out" }, T + half);
+}
+
+function slideTransition(oldId, newId, T, dur, dir) {
+  var half = dur / 2;
+  var xOut = dir === "left" ? -1920 : dir === "right" ? 1920 : 0;
+  var yOut = dir === "up" ? -1080 : dir === "down" ? 1080 : 0;
+  var xIn = dir === "left" ? 1920 : dir === "right" ? -1920 : 0;
+  var yIn = dir === "up" ? 1080 : dir === "down" ? -1080 : 0;
+  tl.set(newId, { opacity: 0, x: xIn, y: yIn, filter: "blur(8px)", scale: 1 }, T);
+  tl.to(oldId, { x: xOut, y: yOut, filter: "blur(8px)", autoAlpha: 0, duration: half, ease: "power3.in" }, T);
+  tl.to(newId, { x: 0, y: 0, filter: "blur(0px)", opacity: 1, duration: half, ease: "power3.out" }, T + half);
+}
+
+function zoomTransition(oldId, newId, T, dur) {
+  var half = dur / 2;
+  tl.set(newId, { opacity: 0, scale: 0.6, filter: "blur(10px)" }, T);
+  tl.set(oldId, { zIndex: 10 }, T);
+  tl.to(oldId, { scale: 1.8, autoAlpha: 0, filter: "blur(10px)", duration: half, ease: "power3.in" }, T);
+  tl.to(newId, { scale: 1, opacity: 1, filter: "blur(0px)", duration: half, ease: "power3.out" }, T + half);
+  tl.set(oldId, { zIndex: "auto" }, T + dur);
+  tl.set(newId, { zIndex: "auto" }, T + dur);
+}
+
+function crossfadeTransition(oldId, newId, T, dur) {
+  var half = dur / 2;
+  tl.set(newId, { opacity: 0, filter: "blur(4px)", scale: 1 }, T);
+  tl.to(oldId, { autoAlpha: 0, filter: "blur(4px)", duration: half, ease: "power2.in" }, T);
+  tl.to(newId, { opacity: 1, filter: "blur(0px)", duration: half, ease: "power2.out" }, T + half);
+}
+
+// Transitions
+// C1 → C3 @ 17s: Crossfade (cena-01 runs 0–17s, DTI phase embedded inside it)
+crossfadeTransition("#c1", "#c3", 17, 0.4);
+// C3 → C4 @ 42s: Crossfade (phone persists in same position)
+crossfadeTransition("#c3", "#c4", 42, 0.4);
+// C4 → C5 @ 55s: Crossfade
+crossfadeTransition("#c4", "#c5", 55, 0.4);
+// C5 → C6 @ 67s: Crossfade (phone persists in same position)
+crossfadeTransition("#c5", "#c6", 67, 0.4);
+// C6 → C7 @ 81s: Crossfade (phone persists in same position)
+crossfadeTransition("#c6", "#c7", 81, 0.4);
+// C7 → C8 @ 94s: Crossfade
+crossfadeTransition("#c7", "#c8", 94, 0.4);
+// C8 → C9 @ 111s: Crossfade
+crossfadeTransition("#c8", "#c9", 111, 0.5);
+
+window.__timelines["main"] = tl;
+</script>
+</body>
+</html>

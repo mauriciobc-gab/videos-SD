@@ -1,0 +1,266 @@
+<template id="cena-01-template">
+  <div id="cena-01" data-composition-id="cena-01" data-start="0" data-duration="17" data-width="1920" data-height="1080">
+    <style>
+      #cena-01 {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: linear-gradient(164deg, #1e3460 15.4%, #0069b3 86.5%);
+        font-family: "Satoshi Variable", sans-serif;
+        color: #fdfbf4;
+        position: relative;
+      }
+      /* Phase 1 decoratives */
+      .grid-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        opacity: 0.12;
+      }
+      .grid-line { stroke: #fdfbf4; stroke-width: 1; }
+      .particle { fill: #fdfbf4; }
+      /* Phase 2 decoratives */
+      .flow-line {
+        position: absolute;
+        height: 2px;
+        background: rgba(253, 251, 244, 0.2);
+        transform-origin: left center;
+      }
+      /* Shared */
+      .corner-accent {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        border: 2px solid rgba(253, 251, 244, 0.2);
+      }
+      .corner-tl { top: 40px; left: 40px; border-right: none; border-bottom: none; }
+      .corner-tr { top: 40px; right: 40px; border-left: none; border-bottom: none; }
+      .corner-bl { bottom: 40px; left: 40px; border-right: none; border-top: none; }
+      .corner-br { bottom: 40px; right: 40px; border-left: none; border-top: none; }
+      /* Phase 1 content */
+      .keyword {
+        font-size: 80px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: -0.03em;
+        line-height: 1;
+        position: absolute;
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+      }
+      .keyword-left  { left: 120px; top: 280px; }
+      .keyword-right { right: 120px; top: 280px; text-align: right; }
+      .keyword-center { top: 460px; left: 50%; transform: translateX(-50%); font-size: 120px; }
+      .quote-main {
+        font-size: 72px;
+        font-weight: 900;
+        text-align: center;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        max-width: 1400px;
+        text-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+        position: absolute;
+        top: 380px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+      }
+      .meta-label {
+        font-family: "Cabin", sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: rgba(253, 251, 244, 0.8);
+        position: absolute;
+        bottom: 80px;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+      }
+      /* Phase 2 content */
+      #dti-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 80px 120px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 24px;
+        opacity: 0;
+      }
+      .dti-block {
+        text-align: center;
+        letter-spacing: -0.02em;
+        max-width: 1500px;
+        text-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .title-line { display: block; overflow: hidden; }
+      .title-line-1 { font-size: 56px; font-weight: 700; line-height: 1.2; color: rgba(253, 251, 244, 0.9); }
+      .title-line-2 { font-size: 72px; font-weight: 900; line-height: 1.2; }
+      .word { display: inline-block; overflow: hidden; margin-right: 0.3em; }
+      .word:last-child { margin-right: 0; }
+      .word-inner { display: inline-block; will-change: transform, opacity, filter; opacity: 0; }
+      .subtitle {
+        font-size: 32px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: rgba(253, 251, 244, 0.85);
+        text-align: center;
+        max-width: 1200px;
+        margin-top: 16px;
+      }
+      .highlight-phrase {
+        font-size: 36px;
+        font-weight: 400;
+        color: rgba(134, 229, 255, 0.9);
+        text-align: center;
+        margin-top: 12px;
+      }
+      .logos-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 48px;
+        margin-top: 24px;
+      }
+      .logo-dti   { width: 180px; height: 77px; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4)); }
+      .logo-aguia { width: 220px; height: 57px; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4)); }
+    </style>
+
+    <!-- Phase 1: grid -->
+    <svg id="c1-grid-bg" class="grid-bg" viewBox="0 0 1920 1080" preserveAspectRatio="none">
+      <defs>
+        <pattern id="grid-pattern" width="120" height="120" patternUnits="userSpaceOnUse">
+          <path d="M 120 0 L 0 0 0 120" fill="none" class="grid-line" opacity="0.4"/>
+        </pattern>
+      </defs>
+      <rect width="1920" height="1080" fill="url(#grid-pattern)"/>
+      <circle class="particle" cx="200"  cy="200"  r="3" opacity="0.6"/>
+      <circle class="particle" cx="500"  cy="350"  r="4" opacity="0.4"/>
+      <circle class="particle" cx="900"  cy="150"  r="2" opacity="0.7"/>
+      <circle class="particle" cx="1300" cy="400"  r="3" opacity="0.5"/>
+      <circle class="particle" cx="1600" cy="250"  r="4" opacity="0.6"/>
+      <circle class="particle" cx="300"  cy="700"  r="3" opacity="0.5"/>
+      <circle class="particle" cx="700"  cy="850"  r="2" opacity="0.7"/>
+      <circle class="particle" cx="1100" cy="750"  r="3" opacity="0.4"/>
+      <circle class="particle" cx="1500" cy="900"  r="4" opacity="0.6"/>
+      <circle class="particle" cx="1700" cy="650"  r="3" opacity="0.5"/>
+      <line class="grid-line conn" x1="200"  y1="200"  x2="500"  y2="350"  opacity="0.2"/>
+      <line class="grid-line conn" x1="500"  y1="350"  x2="900"  y2="150"  opacity="0.15"/>
+      <line class="grid-line conn" x1="900"  y1="150"  x2="1300" y2="400"  opacity="0.2"/>
+      <line class="grid-line conn" x1="1300" y1="400"  x2="1600" y2="250"  opacity="0.15"/>
+      <line class="grid-line conn" x1="300"  y1="700"  x2="700"  y2="850"  opacity="0.2"/>
+      <line class="grid-line conn" x1="700"  y1="850"  x2="1100" y2="750"  opacity="0.15"/>
+      <line class="grid-line conn" x1="1100" y1="750"  x2="1500" y2="900"  opacity="0.2"/>
+      <line class="grid-line conn" x1="1500" y1="900"  x2="1700" y2="650"  opacity="0.15"/>
+    </svg>
+
+    <!-- Phase 2: flow lines -->
+    <div class="flow-line" style="top:200px;left:0;width:600px;"  id="fl1"></div>
+    <div class="flow-line" style="top:400px;left:0;width:900px;"  id="fl2"></div>
+    <div class="flow-line" style="top:600px;left:0;width:500px;"  id="fl3"></div>
+    <div class="flow-line" style="top:800px;left:0;width:1100px;" id="fl4"></div>
+    <div class="flow-line" style="top:300px;right:0;width:700px;" id="fl5"></div>
+    <div class="flow-line" style="top:500px;right:0;width:400px;" id="fl6"></div>
+    <div class="flow-line" style="top:700px;right:0;width:800px;" id="fl7"></div>
+
+    <!-- Shared corner accents -->
+    <div class="corner-accent corner-tl"></div>
+    <div class="corner-accent corner-tr"></div>
+    <div class="corner-accent corner-bl"></div>
+    <div class="corner-accent corner-br"></div>
+
+    <!-- Phase 1: keywords + quote -->
+    <div class="keyword keyword-left"   id="c1-responsabilidade">RESPONSABILIDADE</div>
+    <div class="keyword keyword-right"  id="c1-analise">ANÁLISE</div>
+    <div class="keyword keyword-center" id="c1-dados">DADOS</div>
+    <div class="quote-main" id="c1-quote">
+      <div>Segurança e decisão</div>
+      <div>não são opções.</div>
+      <div>São fundamentos.</div>
+    </div>
+    <div class="meta-label" id="c1-meta">Soluções Digitais — DTI</div>
+
+    <!-- Phase 2: DTI intro -->
+    <div id="dti-content">
+      <div class="dti-block" id="c2-titulo">
+        <div class="title-line title-line-1" data-layout-allow-overflow>
+          <span class="word" data-layout-allow-overflow><span class="word-inner">App</span></span>
+          <span class="word" data-layout-allow-overflow><span class="word-inner">Análise</span></span>
+          <span class="word" data-layout-allow-overflow><span class="word-inner">crítica</span></span>
+        </div>
+        <div class="title-line title-line-2" data-layout-allow-overflow>
+          <span class="word" data-layout-allow-overflow><span class="word-inner">do</span></span>
+          <span class="word" data-layout-allow-overflow><span class="word-inner">motorista</span></span>
+        </div>
+      </div>
+      <div class="highlight-phrase" id="c2-phrase">Transformando tecnologia em valor real</div>
+      <div class="logos-row" id="c2-logos">
+        <img class="logo-dti"   src="../assets/brand/logo-dti.svg"           alt="DTI" />
+        <img class="logo-aguia" src="../assets/brand/logo-aguia-branca.svg"  alt="Grupo Águia Branca" />
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      var tl = gsap.timeline({ paused: true });
+
+      // ── PHASE 1 (0–5s): keywords → quote ────────────────────────────────
+      tl.fromTo(".conn",          { opacity: 0 }, { opacity: 0.25, duration: 1.0, ease: "power2.out", stagger: 0.08 }, 0.1);
+      tl.fromTo(".corner-accent", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.4)", stagger: 0.06 }, 0.15);
+
+      // Keywords enter quickly
+      tl.fromTo("#c1-responsabilidade", { x: -120, opacity: 0 },            { x: 0, opacity: 1, duration: 0.6, ease: "expo.out" },              0.10);
+      tl.fromTo("#c1-analise",          { x:  120, opacity: 0 },            { x: 0, opacity: 1, duration: 0.6, ease: "expo.out" },              0.15);
+      tl.fromTo("#c1-dados",            { y:   60, opacity: 0, scale: 0.9 }, { y: 0, opacity: 1, scale: 1, duration: 0.7, ease: "power3.out" }, 0.20);
+
+      // Keywords exit quickly — then reveal quote
+      tl.to("#c1-responsabilidade", { opacity: 0, y: -40, duration: 0.4, ease: "power2.in" }, 1.20);
+      tl.to("#c1-analise",          { opacity: 0, y: -40, duration: 0.4, ease: "power2.in" }, 1.30);
+      tl.to("#c1-dados",            { opacity: 0, y: -40, duration: 0.4, ease: "power2.in" }, 1.40);
+      tl.fromTo("#c1-quote", { opacity: 0, scale: 0.85, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: "power3.out" }, 1.60);
+      tl.fromTo("#c1-meta",  { opacity: 0, y: 20 },              { opacity: 0.7, y: 0,   duration: 0.5, ease: "power2.out" },       2.00);
+
+      // ── TRANSITION (4.8–5.2s): grid fades, phase-2 container opens ───────
+      tl.to("#c1-quote",    { opacity: 0, y: -30, duration: 0.5, ease: "power2.in", overwrite: "auto" }, 4.8);
+      tl.to("#c1-meta",     { opacity: 0,         duration: 0.4, ease: "power2.in", overwrite: "auto" }, 4.8);
+      tl.to("#c1-grid-bg",  { opacity: 0,         duration: 0.7, ease: "power1.out" }, 4.8);
+      tl.set("#dti-content", { opacity: 1 }, 5.0);
+
+      // ── PHASE 2 (5–16s): DTI intro ───────────────────────────────────────
+      // VO starts at absolute t=5 in the root timeline
+      // Relative offsets preserved from original cena-02:
+      //   flow lines  → +0.1s  = 5.1
+      //   DTI title   → +3.6s  = 8.6   ("a DTI atua como habilitadora…")
+      //   subtitle    → +4.5s  = 9.5
+      //   phrase      → +6.9s  = 11.9  ("transformando tecnologia em valor real")
+      //   logos       → +7.5s  = 12.5
+      tl.fromTo(".flow-line", { scaleX: 0, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 1.0, ease: "power2.out", stagger: 0.12 }, 5.1);
+
+      tl.set("#c2-titulo .word-inner", { y: 80, opacity: 0, filter: "blur(12px)" }, 8.6);
+      tl.to("#c2-titulo .word-inner", { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.9, ease: "power3.out", stagger: 0.12 }, 8.6);
+      tl.fromTo("#c2-phrase", { opacity: 0, y: 20 },                      { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },                      11.9);
+      tl.fromTo("#c2-logos",  { opacity: 0, y: 20, scale: 0.95 },         { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "power2.out" },             12.5);
+
+      // Gentle pulse on the highlight phrase
+      tl.to("#c2-phrase", { scale: 1.03, duration: 1.5, ease: "sine.inOut", yoyo: true, repeat: 1 }, 12.5);
+
+      window.__timelines["cena-01"] = tl;
+    </script>
+  </div>
+</template>

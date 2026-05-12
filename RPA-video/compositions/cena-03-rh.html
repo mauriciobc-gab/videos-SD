@@ -1,0 +1,221 @@
+<template id="cena-03-template">
+  <div id="cena-03" data-composition-id="cena-03" data-start="0" data-width="1920" data-height="1080">
+    <style>
+      #cena-03 {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #1e3460;
+        font-family: "Satoshi Variable", sans-serif;
+        color: #fdfbf4;
+        position: relative;
+      }
+      .hex-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.08;
+        pointer-events: none;
+      }
+      .scene-content {
+        width: 100%;
+        height: 100%;
+        padding: 100px 140px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 60px;
+        background: rgba(30, 52, 96, 0.4);
+      }
+      .flow-title {
+        font-family: "Cabin", sans-serif;
+        font-size: 24px;
+        font-weight: 700;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: rgba(253, 251, 244, 0.7);
+      }
+      .flow-chain {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+      }
+      .flow-node {
+        width: 120px;
+        height: 120px;
+        border-radius: 20px;
+        background: rgba(14, 106, 192, 0.2);
+        border: 2px solid rgba(14, 106, 192, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .flow-node svg {
+        width: 64px;
+        height: 64px;
+      }
+      .flow-arrow {
+        font-size: 48px;
+        font-weight: 900;
+        color: #fdfbf4;
+        line-height: 1;
+      }
+      .process-label {
+        font-size: 64px;
+        font-weight: 900;
+        letter-spacing: -0.02em;
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+        background: rgba(30, 52, 96, 0.85);
+        padding: 8px 20px;
+        border-radius: 8px;
+        display: inline-block;
+      }
+      .metrics-row {
+        display: flex;
+        gap: 40px;
+        margin-top: 20px;
+      }
+      .metric-card {
+        width: 340px;
+        background: rgba(14, 106, 192, 0.12);
+        border: 1px solid rgba(14, 106, 192, 0.35);
+        border-radius: 20px;
+        padding: 36px 32px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+      .metric-icon {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 8px;
+      }
+      .metric-value {
+        font-size: 56px;
+        font-weight: 900;
+        line-height: 1;
+        font-variant-numeric: tabular-nums;
+        background: rgba(30, 52, 96, 0.85);
+        padding: 4px 12px;
+        border-radius: 4px;
+        display: inline-block;
+      }
+      .metric-label {
+        font-size: 20px;
+        font-weight: 400;
+        color: rgba(253, 251, 244, 0.85);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+    </style>
+
+    <svg class="hex-bg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <pattern id="hex-pattern" width="104" height="120" patternUnits="userSpaceOnUse" patternTransform="scale(1.5)">
+          <path d="M52 0 L104 30 L104 90 L52 120 L0 90 L0 30 Z" fill="none" stroke="#fdfbf4" stroke-width="1"/>
+        </pattern>
+      </defs>
+      <rect width="1920" height="1080" fill="url(#hex-pattern)"/>
+    </svg>
+
+    <div class="scene-content">
+      <div class="flow-title" id="c3-header">Autenticação Automatizada</div>
+
+      <div class="flow-chain" id="c3-flow">
+        <div class="flow-node">
+          <svg viewBox="0 0 64 64" fill="none" stroke="#fdfbf4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="12" y="24" width="40" height="28" rx="4"/>
+            <path d="M20 24V18a12 12 0 0 1 24 0v6"/>
+            <circle cx="32" cy="38" r="4" fill="#fdfbf4" stroke="none"/>
+          </svg>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <svg viewBox="0 0 64 64" fill="none" stroke="#0e6ac0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="32" cy="32" r="22"/>
+            <path d="M32 18v14l10 6"/>
+          </svg>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <svg viewBox="0 0 64 64" fill="none" stroke="#fdfbf4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="32" cy="32" r="8"/>
+            <path d="M32 8v8M32 48v8M8 32h8M48 32h8"/>
+            <path d="M15 15l5.6 5.6M43.4 43.4L49 49M15 49l5.6-5.6M43.4 20.6L49 15" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node" style="background: rgba(14,106,192,0.4); border-color: #0e6ac0;">
+          <svg viewBox="0 0 64 64" fill="none" stroke="#fdfbf4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 34l12 12 28-28"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="process-label" id="c3-process">RH Metadados</div>
+
+      <div class="metrics-row">
+        <div class="metric-card" id="c3-m1">
+          <svg class="metric-icon" viewBox="0 0 48 48" fill="none" stroke="#0e6ac0" stroke-width="2.5" stroke-linecap="round">
+            <circle cx="24" cy="24" r="18"/>
+            <path d="M24 12v12l8 4"/>
+          </svg>
+          <div class="metric-value">100%</div>
+          <div class="metric-label">SLA no prazo</div>
+        </div>
+        <div class="metric-card" id="c3-m2">
+          <svg class="metric-icon" viewBox="0 0 48 48" fill="none" stroke="#0e6ac0" stroke-width="2.5" stroke-linecap="round">
+            <path d="M24 6l6 12h12l-10 8 4 12-12-8-12 8 4-12L6 18h12z"/>
+          </svg>
+          <div class="metric-value">9,48</div>
+          <div class="metric-label">Satisfação /10</div>
+        </div>
+        <div class="metric-card" id="c3-m3">
+          <svg class="metric-icon" viewBox="0 0 48 48" fill="none" stroke="#0e6ac0" stroke-width="2.5" stroke-linecap="round">
+            <path d="M8 24h6l4-12 8 24 4-12h6"/>
+          </svg>
+          <div class="metric-value">R$ 12k</div>
+          <div class="metric-label">Save anual</div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      var tl = gsap.timeline({ paused: true });
+      var beat = 38.20;
+
+      // Header
+      tl.fromTo("#c3-header", { opacity: 0, y: -30 }, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 0.5);
+
+      // Flow chain staggered
+      var nodes = document.querySelectorAll("#c3-flow .flow-node, #c3-flow .flow-arrow");
+      nodes.forEach(function(el, i) {
+        var isArrow = el.classList.contains("flow-arrow");
+        tl.fromTo(el, { opacity: 0, scale: 0.6, x: isArrow ? 0 : (i % 2 === 0 ? -30 : 30) }, { opacity: 1, scale: 1, x: 0, duration: 0.6, ease: "back.out(1.6)" }, 1.0 + i * 0.4);
+      });
+
+      // Process label
+      tl.fromTo("#c3-process", { opacity: 0, y: 30, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 1.0, ease: "expo.out" }, 5.0);
+
+      // Cards pop
+      var cards = document.querySelectorAll("#c3-m1, #c3-m2, #c3-m3");
+      cards.forEach(function(card, i) {
+        tl.fromTo(card, { opacity: 0, y: 50, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "back.out(1.4)" }, 10.0 + i * 1.0);
+      });
+
+      // Subtle ambient pulse on cards
+      cards.forEach(function(card, i) {
+        tl.to(card, { boxShadow: "0 0 40px rgba(14,106,192,0.4)", duration: 1.2, ease: "sine.inOut", yoyo: true, repeat: 16 }, 16 + i * 0.5);
+      });
+
+      window.__timelines["cena-03"] = tl;
+    </script>
+  </div>
+</template>

@@ -1,0 +1,3 @@
+Cada resultado que você viu reflete o esforço do time. No case RH Metadados, esse trabalho se conecta à parceria entre os setores de Sistemática ERP e Soluções Digitais. Um exemplo dessa colaboração em prática: com o novo método de autenticação no Portal RH Metadados, o volume de chamados disparou. Em conjunto, identificamos o gargalo e implementamos um RPA que automatizou a redefinição de senhas.
+
+O resultado dessa parceria? Zeramos o atraso, garantimos 100% de SLA no prazo, nota de satisfação de quase 9.5 e um save de 12 mil reais. Mais autonomia e agilidade no acesso.
