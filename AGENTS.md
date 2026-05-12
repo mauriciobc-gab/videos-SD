@@ -5,7 +5,7 @@ Multi-project workspace for **Soluções Digitais** (DTI / Grupo Águia Branca) 
 ## Projects
 
 | Directory | Description | Scenes |
-|---|---|---|
+| --- | --- | --- |
 | `RPA-video/` | RPA results 2025/2026 — ~2:44 runtime | cena-01 → cena-07 |
 | `ANALISE_CRITICA_MOTORISTA-video/` | Análise Crítica Motorista — 9 scenes | cena-01 → cena-09 |
 | `ANALISE_CRITICA_IMPLANTACAO/` | Análise Crítica Implantação — 9 scenes | cena-01 → cena-09 |
@@ -18,7 +18,7 @@ Each project has its own `AGENTS.md` (HyperFrames rules) and `CLAUDE.md` (compos
 Skills are in `skills/` and `.agents/skills/`. Always invoke the relevant skill before writing or modifying HTML compositions — they encode non-obvious framework patterns that generic web docs won't cover.
 
 | Skill | Trigger | Source |
-|---|---|---|---|
+| --- | --- | --- |
 | `/hyperframes` | Creating/editing compositions, captions, audio-reactive visuals, transitions | `heygen-com/hyperframes` |
 | `/hyperframes-cli` | lint, preview, render, transcribe, tts CLI commands | `heygen-com/hyperframes` |
 | `/hyperframes-registry` | `hyperframes add` — install blocks/components | `heygen-com/hyperframes` |
@@ -29,20 +29,28 @@ Skills are in `skills/` and `.agents/skills/`. Always invoke the relevant skill 
 
 ## Commands
 
-Run HyperFrames commands from **inside the project directory**:
+Run commands from **inside the target project directory**:
 
 ```bash
-cd RPA-video   # or ANALISE_CRITICA_MOTORISTA-video/
-npx hyperframes preview      # open studio in browser
-npx hyperframes render       # render to MP4
-npx hyperframes lint         # validate — fix all errors before finishing
-npx hyperframes lint --verbose
+cd RPA-video
+npx hyperframes preview
+npx hyperframes render
+npx hyperframes lint
 npx hyperframes docs <topic> # local reference docs (no network)
+```
+
+For `ANALISE_CRITICA_IMPLANTACAO/`, `ANALISE_CRITICA_MOTORISTA-video/`, and `ANALISE_CRITICA_RESULTADOS/` prefer package scripts:
+
+```bash
+npm run dev
+npm run check
+npm run render
+npm run publish
 ```
 
 ## TTS Voiceover Generation
 
-Run from **project root** (`videos-gab/`). The `--project` flag is **mandatory** to avoid overwriting another project's audio:
+Run from **workspace root** (`videos-SD/`). The `--project` flag is **mandatory** to avoid overwriting another project's audio:
 
 ```bash
 python3 tts-elevenlabs.py assets/<project>/locucao-cena-XX.txt \
@@ -60,7 +68,7 @@ Requires `ELEVENLABS_API_KEY` in `.env`. Default voice: `Gambeta` (PT-BR).
 
 ## Asset Organization
 
-```
+```text
 assets/                        # Shared — source of truth
   brand/                       # SVG logos and brand assets
   DESIGN.MD                    # Brand design system — read for colors/typography
@@ -78,6 +86,7 @@ assets/                        # Shared — source of truth
 Skills are installed in `.agents/skills/` (canonical source). Other `.xxx/` AI agent config directories are symlinks and ignored by git. Run `hyperframes add <skill>` to install new ones.
 
 Installed skills (from `skills-lock.json`):
+
 - `gsap` — from `heygen-com/hyperframes`
 - `hyperframes` — from `heygen-com/hyperframes`
 - `hyperframes-cli` — from `heygen-com/hyperframes`
@@ -91,6 +100,7 @@ Installed skills (from `skills-lock.json`):
 Full spec: [assets/DESIGN.MD](assets/DESIGN.MD)
 
 Quick reference:
+
 - Navy `#1e3460` — dark backgrounds
 - Blue `#0069b3` — primary brand blue
 - Cream `#fdfbf4` — text on dark
@@ -105,3 +115,4 @@ Quick reference:
 - No dynamic JS: `Date.now()`, `Math.random()`, network fetches are **forbidden** in compositions.
 - Asset paths in compositions are relative to the project directory (e.g., `../assets/voice-cena-01.mp3` — note `../`).
 - Each composition must register its GSAP timeline on `window.__timelines["composition-id"]` (paused).
+- For project-level nuances, always read that project's `AGENTS.md` and `CLAUDE.md` before editing files under it.

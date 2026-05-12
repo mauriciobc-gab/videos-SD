@@ -1,20 +1,21 @@
-# HyperFrames Composition Project
+# HyperFrames Composition Project — ANALISE_CRITICA_IMPLANTACAO
 
-## Skills
+## Skills — USE THESE FIRST
 
-This project uses AI agent skills for framework-specific patterns. Install them if not already present:
+Always invoke the relevant skill before writing or modifying compositions.
 
-```bash
-npx skills add heygen-com/hyperframes
-```
-
-Skills encode patterns like `window.__timelines` registration, `data-*` attribute semantics, Tailwind v4 browser-runtime styling for `--tailwind` projects, and shader-compatible CSS rules that are not in generic web docs. Using them produces correct compositions from the start.
+| Skill | Command | When to use |
+| --- | --- | --- |
+| **hyperframes** | `/hyperframes` | Creating or editing HTML compositions, captions, TTS, audio-reactive visuals |
+| **hyperframes-cli** | `/hyperframes-cli` | CLI commands: lint, preview, render, transcribe, tts |
+| **hyperframes-registry** | `/hyperframes-registry` | Installing blocks/components via `hyperframes add` |
+| **gsap** | `/gsap` | GSAP timelines, easing, staggering, and performance |
 
 ## Commands
 
 ```bash
 npm run dev          # preview in browser (studio editor)
-npm run check        # lint + validate + inspect
+npm run check        # lint + validate + inspect — ALWAYS run before finishing
 npm run render       # render to MP4
 npm run publish      # publish and get a shareable link
 npx hyperframes docs <topic> # reference docs in terminal
@@ -43,16 +44,25 @@ Fix all errors before presenting the result.
 1. Every timed element needs `data-start`, `data-duration`, and `data-track-index`
 2. Visible timed elements **must** have `class="clip"` — the framework uses this for visibility control
 3. GSAP timelines must be paused and registered on `window.__timelines`:
+
    ```js
    window.__timelines = window.__timelines || {};
    window.__timelines["composition-id"] = gsap.timeline({ paused: true });
    ```
+
 4. Videos use `muted` with a separate `<audio>` element for the audio track
 5. Sub-compositions use `data-composition-src="compositions/file.html"`
 6. Only deterministic logic — no `Date.now()`, no `Math.random()`, no network fetches
 
+## Workspace Rules
+
+- Source-of-truth assets are in `../assets/analise-critica-implantacao/`; `assets/` in this project is deploy-time copy only
+- Do not edit copied assets directly under this project's `assets/`
+- Cross-check brand/color/type specs in `../assets/DESIGN.MD`
+- Read `CLAUDE.md` in this folder before changing scene timing or composition structure
+
 ## Documentation
 
-Full docs: https://hyperframes.heygen.com/introduction
+Full docs: [hyperframes.heygen.com/introduction](https://hyperframes.heygen.com/introduction)
 
-Machine-readable index for AI tools: https://hyperframes.heygen.com/llms.txt
+Machine-readable index for AI tools: [hyperframes.heygen.com/llms.txt](https://hyperframes.heygen.com/llms.txt)
