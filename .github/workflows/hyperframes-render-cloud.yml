@@ -1,0 +1,229 @@
+name: HyperFrames Cloud Render
+
+on:
+  workflow_dispatch:
+    inputs:
+      project:
+        description: "Project to render"
+        required: true
+        default: all
+        type: choice
+        options:
+          - all
+          - RPA-video
+          - ANALISE_CRITICA_IMPLANTACAO
+          - ANALISE_CRITICA_MOTORISTA-video
+          - ANALISE_CRITICA_RESULTADOS
+      quality:
+        description: "Render quality"
+        required: true
+        default: standard
+        type: choice
+        options:
+          - draft
+          - standard
+          - high
+      fps:
+        description: "Frames per second"
+        required: true
+        default: "30"
+        type: choice
+        options:
+          - "24"
+          - "30"
+          - "60"
+      format:
+        description: "Video format"
+        required: true
+        default: mp4
+        type: choice
+        options:
+          - mp4
+          - webm
+          - mov
+      strict:
+        description: "Fail render on lint errors"
+        required: true
+        default: true
+        type: boolean
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - "RPA-video/**"
+      - "ANALISE_CRITICA_IMPLANTACAO/**"
+      - "ANALISE_CRITICA_MOTORISTA-video/**"
+      - "ANALISE_CRITICA_RESULTADOS/**"
+      - ".github/workflows/hyperframes-render-cloud.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hyperframes-render-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  resolve-projects:
+    runs-on: ubuntu-latest
+    outputs:
+      projects: ${{ steps.pick.outputs.projects }}
+      hasProjects: ${{ steps.pick.outputs.hasProjects }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Detect changed projects on push
+        id: changes
+        if: github.event_name == 'push'
+        uses: dorny/paths-filter@v3
+        with:
+          list-files: shell
+          filters: |
+            rpa:
+              - 'RPA-video/**'
+            implantacao:
+              - 'ANALISE_CRITICA_IMPLANTACAO/**'
+            motorista:
+              - 'ANALISE_CRITICA_MOTORISTA-video/**'
+            resultados:
+              - 'ANALISE_CRITICA_RESULTADOS/**'
+
+      - name: Build render matrix
+        id: pick
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            selected="${{ github.event.inputs.project }}"
+            if [[ "$selected" == "all" ]]; then
+              projects='["RPA-video","ANALISE_CRITICA_IMPLANTACAO","ANALISE_CRITICA_MOTORISTA-video","ANALISE_CRITICA_RESULTADOS"]'
+            else
+              projects="[\"$selected\"]"
+            fi
+          else
+            project_list=()
+            [[ "${{ steps.changes.outputs.rpa }}" == "true" ]] && project_list+=("RPA-video")
+            [[ "${{ steps.changes.outputs.implantacao }}" == "true" ]] && project_list+=("ANALISE_CRITICA_IMPLANTACAO")
+            [[ "${{ steps.changes.outputs.motorista }}" == "true" ]] && project_list+=("ANALISE_CRITICA_MOTORISTA-video")
+            [[ "${{ steps.changes.outputs.resultados }}" == "true" ]] && project_list+=("ANALISE_CRITICA_RESULTADOS")
+
+            if [[ ${#project_list[@]} -eq 0 ]]; then
+              projects='[]'
+            else
+              json='['
+              for p in "${project_list[@]}"; do
+                json+="\"$p\","
+              done
+              projects="${json%,}]"
+            fi
+          fi
+
+          if [[ "$projects" == "[]" ]]; then
+            echo "No renderable project changes found for this event."
+            echo "hasProjects=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "Selected projects: $projects"
+            echo "hasProjects=true" >> "$GITHUB_OUTPUT"
+          fi
+
+          echo "projects=$projects" >> "$GITHUB_OUTPUT"
+
+  render:
+    needs: resolve-projects
+    if: needs.resolve-projects.outputs.hasProjects == 'true'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project: ${{ fromJson(needs.resolve-projects.outputs.projects) }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Ensure Docker and FFmpeg
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if ! command -v docker >/dev/null 2>&1; then
+            echo "Docker is required for --docker renders, but was not found."
+            exit 1
+          fi
+          docker --version
+
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            echo "FFmpeg not found. Installing..."
+            sudo apt-get update
+            sudo apt-get install -y ffmpeg
+          fi
+          ffmpeg -version | head -n 1
+
+      - name: Build render args
+        id: args
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            quality="${{ github.event.inputs.quality }}"
+            fps="${{ github.event.inputs.fps }}"
+            format="${{ github.event.inputs.format }}"
+            strict="${{ github.event.inputs.strict }}"
+          else
+            quality="high"
+            fps="30"
+            format="mp4"
+            strict="true"
+          fi
+
+          strict_flag=""
+          if [[ "$strict" == "true" ]]; then
+            strict_flag="--strict"
+          fi
+
+          ext="$format"
+          output_name="${{ matrix.project }}-${{ github.run_number }}.${ext}"
+          output_path="renders/$output_name"
+
+          echo "quality=$quality" >> "$GITHUB_OUTPUT"
+          echo "fps=$fps" >> "$GITHUB_OUTPUT"
+          echo "format=$format" >> "$GITHUB_OUTPUT"
+          echo "strict_flag=$strict_flag" >> "$GITHUB_OUTPUT"
+          echo "output_path=$output_path" >> "$GITHUB_OUTPUT"
+
+      - name: Render with Docker
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "${{ matrix.project }}"
+          npx --yes hyperframes render \
+            --docker \
+            --quality "${{ steps.args.outputs.quality }}" \
+            --fps "${{ steps.args.outputs.fps }}" \
+            --format "${{ steps.args.outputs.format }}" \
+            ${{ steps.args.outputs.strict_flag }} \
+            --output "${{ steps.args.outputs.output_path }}"
+
+      - name: Upload render artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: render-${{ matrix.project }}-${{ github.run_number }}
+          path: ${{ matrix.project }}/${{ steps.args.outputs.output_path }}
+          if-no-files-found: error
+
+  no-op:
+    needs: resolve-projects
+    if: needs.resolve-projects.outputs.hasProjects != 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Skip
+        run: echo "No project changes detected. Nothing to render."
