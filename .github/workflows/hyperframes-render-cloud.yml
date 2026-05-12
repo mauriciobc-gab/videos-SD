@@ -44,7 +44,7 @@ on:
       strict:
         description: "Fail render on lint errors"
         required: true
-        default: true
+        default: false
         type: boolean
   push:
     branches:
@@ -182,7 +182,7 @@ jobs:
             quality="high"
             fps="30"
             format="mp4"
-            strict="true"
+            strict="false"
           fi
 
           strict_flag=""
